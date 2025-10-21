@@ -5,27 +5,29 @@ navbar_name: "Janhavi Lande"
 positions:
 - name: B.Tech in Engineering Physics
 - name: Indian Institute of Technology Guwahati
-  logo: /assets/images/badges/IITG_logo.png  # You can replace this with your actual IITG logo file if available
+  logo: /assets/images/badges/IITG_logo.png  # Replace with your IITG logo if available
 
-email: "your@email.com"
+email: "landejanhavi23@gmail.com"
 # cv_link: /assets/files/Janhavi_Lande_CV.pdf  # Uncomment and add your CV file when ready
-gscholar: your_scholar_id_here  # Replace with your Google Scholar ID (e.g., xFmQpf4AAAAJ)
+gscholar: WqSkbpoAAAAJ  # Your actual Google Scholar ID
 github: janhavilande
-# twitter: your_twitter_id  # optional
-# linkedin: your_linkedin_id  # optional
-# orcid: 0000-0000-0000-0000  # optional
+linkedin: janhavi2
+orcid: 0000-0000-0000-0000
+medium: janhavil1202  # New field added for your Medium profile
 
 short_bio_text_justify: false
 short_bio: >-
   <p>
-    I’m <strong>Janhavi Lande</strong>, an Engineering Physics graduate from the <a href="https://www.iitg.ac.in/" target="_blank">Indian Institute of Technology Guwahati</a> (Batch of 2023).
+    I’m <strong>Janhavi Lande</strong>, an Engineering Physics graduate from the 
+    <a href="https://www.iitg.ac.in/" target="_blank">Indian Institute of Technology Guwahati</a> (Batch of 2023).
     My interests lie at the intersection of <em>physics, data science, and artificial intelligence</em>.
   </p>
   <p>
-    I enjoy exploring scientific questions through computational tools and am passionate about trustworthy, interpretable, and reproducible research in AI.
+    I enjoy exploring scientific questions through computational tools and am passionate about 
+    trustworthy, interpretable, and reproducible research in AI.
   </p>
 
-portrait_url: /assets/images/photos/portrait.jpg
+portrait_url: /assets/images/photos/profile.jpg
 # portrait_caption: >-
 #   Replace this caption if you’d like to credit your photo.
 
