@@ -13,7 +13,8 @@ gscholar: WqSkbpoAAAAJ  # Your actual Google Scholar ID
 github: janhavilande
 linkedin: janhavi2
 orcid: 0000-0000-0000-0000
-medium: janhavil1202  # New field added for your Medium profile
+medium: janhavil1202
+substack: pinched  # extracted from your link: https://substack.com/@pinched
 
 short_bio_text_justify: false
 short_bio: >-
@@ -27,7 +28,7 @@ short_bio: >-
     trustworthy, interpretable, and reproducible research in AI.
   </p>
 
-portrait_url: /assets/images/photos/profile.jpg
+portrait_url: /assets/images/photos/portrait.jpg
 # portrait_caption: >-
 #   Replace this caption if you’d like to credit your photo.
 
