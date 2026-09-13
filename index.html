@@ -14,7 +14,7 @@ navbar_title: Home
                 artificial intelligence, and scientific discovery.
             </p>
             <div class="hero-actions">
-                <a href="#featured-publications" class="primary-btn">View publications</a>
+                <a href="{{ '/publications' | relative_url }}" class="primary-btn">View publications</a>
                 <a href="mailto:{{ site.data.profile.email | encode_email }}" class="secondary-btn">Get in touch</a>
             </div>
             <div class="mini-stats">
@@ -42,10 +42,12 @@ navbar_title: Home
         </div>
     </section>
 
+    {% assign pubs = site.publications | sort: "date" | reverse | where: "selected", true %}
+    {% if pubs.size > 0 %}
     <div id="featured-publications" class="row home-grid">
         <div class="col-12">
-            {% assign pubs = site.publications | sort: "date" | reverse | where: "selected", true %}
             {% include widgets/publication_card.html publications=pubs title='<i class="fas fa-star"></i> Selected Publications' %}
         </div>
     </div>
+    {% endif %}
 </div>

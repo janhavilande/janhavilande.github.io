@@ -26,20 +26,6 @@ $(function () {
 
     $('[data-toggle="tooltip"]').tooltip()
 
-    var $grid = $('.grid').masonry({
-        "percentPosition": true,
-        "itemSelector": ".grid-item",
-        "columnWidth": ".grid-sizer"
-    });
-    // layout Masonry after each image loads
-    $grid.imagesLoaded().progress(function () {
-        $grid.masonry('layout');
-    });
-
-    $(".lazy").on("load", function () {
-        $grid.masonry('layout');
-    });
-
     $('.tilt-panel').each(function () {
         var $panel = $(this);
         $panel.on('pointermove', function (event) {
