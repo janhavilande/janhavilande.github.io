@@ -2,9 +2,14 @@
 layout: default
 title : Publications
 navbar_title: Publications
+container_class: container-lg book-page-container
 body_attr: >-
   data-spy="scroll" data-target="#navbar-year" data-offset="100"
 ---
+
+<p class="chapter-mark">A Selected Bibliography</p>
+<h1 class="chapter-title">Publications</h1>
+<div class="ornament" aria-hidden="true">&#10086;</div>
 
 {% assign pubs_by_year = site.publications | sort: "date" | reverse | group_by_exp: "item", "item.date | date: '%Y'" %}
 

@@ -5,31 +5,28 @@ navbar_title: Home
 ---
 
 <div class="homepage-shell">
-    <section class="hero-panel tilt-panel">
+    <section class="titlepage tilt-panel">
         <div class="hero-copy">
-            <span class="eyebrow">Engineering Physics • AI • Data Science</span>
-            <h1>Building thoughtful systems at the edge of science and computation.</h1>
-            <p>
-                I’m Janhavi Lande, a graduate from IIT Guwahati exploring the intersection of data science,
-                artificial intelligence, and scientific discovery.
+            <span class="eyebrow">Engineering Physics &bull; AI &amp; Data Science &bull; Poetry</span>
+            <h1>Janhavi Lande</h1>
+            <p class="subtitle">
+                Being an IIT Guwahati graduate exploring the space where data, machine intelligence, and
+                scientific discovery meet — and the quieter space where a poem gets written.
             </p>
             <div class="hero-actions">
-                <a href="{{ '/publications' | relative_url }}" class="primary-btn">View publications</a>
+                <a href="#chapter-i" class="primary-btn">Begin reading</a>
                 <a href="mailto:{{ site.data.profile.email | encode_email }}" class="secondary-btn">Get in touch</a>
             </div>
-            <div class="mini-stats">
-                <div class="stat-pill">
-                    <strong>AI</strong>
-                    <span>Research</span>
-                </div>
-                <div class="stat-pill">
-                    <strong>Data</strong>
-                    <span>Science</span>
-                </div>
-                <div class="stat-pill">
-                    <strong>Physics</strong>
-                    <span>Computing</span>
-                </div>
+            <div class="social-row">
+                {% if site.data.profile.gscholar %}
+                <a href="https://scholar.google.com/citations?user={{ site.data.profile.gscholar }}&hl=en" target="_blank" rel="noopener" title="Google Scholar"><i class="ai ai-google-scholar"></i></a>
+                {% endif %}
+                {% if site.data.profile.github %}
+                <a href="https://github.com/{{ site.data.profile.github }}" target="_blank" rel="noopener" title="GitHub"><i class="fab fa-github"></i></a>
+                {% endif %}
+                {% if site.data.profile.linkedin %}
+                <a href="https://linkedin.com/in/{{ site.data.profile.linkedin }}" target="_blank" rel="noopener" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                {% endif %}
             </div>
         </div>
 
@@ -42,12 +39,42 @@ navbar_title: Home
         </div>
     </section>
 
+    <section id="chapter-i" class="page-leaf">
+        <p class="chapter-mark">Chapter I</p>
+        <h2 class="chapter-title">Ivied Walls</h2>
+        <div class="ornament" aria-hidden="true">&#10086;</div>
+
+        {% assign book = site.data.book %}
+        <blockquote class="book-tagline">“{{ book.tagline }}”</blockquote>
+        <p>{{ book.blurb }}</p>
+
+        <div class="book-links">
+            {% for link in book.links limit:1 %}
+            <a class="primary-btn" target="_blank" rel="noopener" href="{{ link.url }}">{{ link.label }}</a>
+            {% endfor %}
+            <a class="secondary-btn" href="{{ '/book' | relative_url }}">Read more about the book</a>
+        </div>
+    </section>
+
+    <section id="chapter-ii" class="page-leaf">
+        <p class="chapter-mark">Chapter II</p>
+        <h2 class="chapter-title">The Journey So Far</h2>
+        <div class="ornament" aria-hidden="true">&#10086;</div>
+
+        <ol class="timeline">
+            {% for entry in site.data.timeline %}
+            <li class="timeline-entry">
+                <span class="timeline-year">{{ entry.year }}</span>
+                <span class="timeline-text">{{ entry.text }}</span>
+            </li>
+            {% endfor %}
+        </ol>
+    </section>
+
     {% assign pubs = site.publications | sort: "date" | reverse | where: "selected", true %}
     {% if pubs.size > 0 %}
-    <div id="featured-publications" class="row home-grid">
-        <div class="col-12">
-            {% include widgets/publication_card.html publications=pubs title='<i class="fas fa-star"></i> Selected Publications' %}
-        </div>
-    </div>
+    <section id="chapter-iii" class="page-leaf">
+        {% include widgets/publication_card.html publications=pubs chapter="Chapter III" title="Selected Publications" %}
+    </section>
     {% endif %}
 </div>

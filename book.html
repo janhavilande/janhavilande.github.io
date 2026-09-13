@@ -1,0 +1,30 @@
+---
+layout: default
+title : Ivied Walls
+navbar_title: Book
+container_class: container-lg book-page-container
+---
+
+{% assign book = site.data.book %}
+<article class="book-leaf">
+    <p class="chapter-mark">A Collection of Poems</p>
+    <h1 class="book-title">{{ book.title }}</h1>
+
+    <blockquote class="book-tagline">
+        “{{ book.tagline }}”
+    </blockquote>
+
+    <div class="ornament" aria-hidden="true">&#10086;</div>
+
+    <p class="drop-cap">{{ book.blurb }}</p>
+
+    <p>{{ book.author_note }}</p>
+
+    <p class="book-details">{{ book.details }}</p>
+
+    <div class="book-links">
+        {% for link in book.links %}
+        <a class="primary-btn" target="_blank" rel="noopener" href="{{ link.url }}">{{ link.label }}</a>
+        {% endfor %}
+    </div>
+</article>

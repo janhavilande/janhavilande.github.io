@@ -1,8 +1,9 @@
 {% assign publications = include.publications %}
 <div class="modern-list-card">
     <div class="card-header-row">
-        <span class="section-kicker">Research</span>
-        <h2>{% if include.title %}{{ include.title }}{% else %}Selected Publications{% endif %}</h2>
+        {% if include.chapter %}<p class="chapter-mark">{{ include.chapter }}</p>{% endif %}
+        <h2 class="chapter-title">{% if include.title %}{{ include.title }}{% else %}Selected Publications{% endif %}</h2>
+        <div class="ornament" aria-hidden="true">&#10086;</div>
     </div>
 
     {% for item in publications limit:include.limit %}
