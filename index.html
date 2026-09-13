@@ -4,37 +4,133 @@ title : Homepage
 navbar_title: Home
 ---
 
-<div class="row">
-    <div class="col-lg-3 col-md-4">
-        {% include widgets/profile_card_mini.html %}
+<div class="homepage-shell">
+    <section class="hero-panel">
+        <div class="hero-copy">
+            <span class="eyebrow">Engineering Physics • AI • Data Science</span>
+            <h1>Exploring how data, computation, and physics can shape better understanding.</h1>
+            <p>
+                I’m Janhavi Lande, a graduate from IIT Guwahati interested in intelligent systems,
+                scientific computing, and trustworthy AI.
+            </p>
+            <div class="hero-actions">
+                <a href="#about" class="primary-btn">About me</a>
+                <a href="{{ 'publications' | relative_url }}" class="secondary-btn">Publications</a>
+            </div>
+            <div class="mini-stats">
+                <div class="stat-pill">
+                    <strong>AI</strong>
+                    <span>Research</span>
+                </div>
+                <div class="stat-pill">
+                    <strong>Data</strong>
+                    <span>Science</span>
+                </div>
+                <div class="stat-pill">
+                    <strong>Physics</strong>
+                    <span>Computing</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="hero-visual">
+            {% if site.data.profile.portrait_url %}
+            <div class="portrait-wrap">
+                <img src="{{ site.data.profile.portrait_url | relative_url }}" alt="Janhavi Lande" />
+            </div>
+            {% endif %}
+        </div>
+    </section>
+
+    <div id="about" class="row home-grid">
+        <div class="col-lg-8">
+            <div class="card modern-card">
+                <div class="card-header-row">
+                    <span class="section-kicker">About</span>
+                    <h2>About Me</h2>
+                </div>
+                <div class="card-body-copy">
+                    {{ site.data.profile.short_bio }}
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4">
+            <div class="card modern-card compact-card">
+                <div class="card-header-row small-row">
+                    <span class="section-kicker">Contact</span>
+                    <h3>Connect</h3>
+                </div>
+                <div class="contact-list">
+                    <a href="mailto:{{ site.data.profile.email | encode_email }}">
+                        <i class="fas fa-envelope"></i>
+                        <span>{{ site.data.profile.email | replace: "@", "(at)" }}</span>
+                    </a>
+                    {% if site.data.profile.github %}
+                    <a href="https://github.com/{{ site.data.profile.github }}" target="_blank" rel="noopener">
+                        <i class="fab fa-github"></i>
+                        <span>GitHub</span>
+                    </a>
+                    {% endif %}
+                    {% if site.data.profile.gscholar %}
+                    <a href="https://scholar.google.com/citations?user={{ site.data.profile.gscholar }}" target="_blank" rel="noopener">
+                        <i class="fas fa-graduation-cap"></i>
+                        <span>Google Scholar</span>
+                    </a>
+                    {% endif %}
+                    {% if site.data.profile.linkedin %}
+                    <a href="https://www.linkedin.com/in/{{ site.data.profile.linkedin }}" target="_blank" rel="noopener">
+                        <i class="fab fa-linkedin"></i>
+                        <span>LinkedIn</span>
+                    </a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="col-lg-9 col-md-8">
 
-        {% include widgets/debug_repo_name.html %}
-
-        {% include widgets/debug_url.html %}
-
-        {% include widgets/profile_card_bio_only.html %}
-
-
-        {% if site.data.display.homepage.show_experience %}
-            {% include widgets/experience_card.html %}
-        {% endif %}
-
-        {% if site.data.display.homepage.show_news %}
-        {% assign count_news = site.news | size %}
-        {% if count_news > 0 %}
-        {% include widgets/news_card.html limit=site.data.display.homepage.num_news %}
-        {% endif %}
-        {% endif %}
-
-        {% if site.data.display.homepage.show_selected_publications %}
-        {% assign pubs = site.publications | sort: "date" | reverse | where: "selected", true %}
-        {%
-        include widgets/publication_card.html
-        publications=pubs
-        title='<i class="fas fa-star"></i> Selected Publications'
-        %}
-        {% endif %}
+    {% if site.data.profile.education %}
+    <div class="row home-grid">
+        <div class="col-12">
+            <div class="card modern-card">
+                <div class="card-header-row">
+                    <span class="section-kicker">Background</span>
+                    <h2>Education</h2>
+                </div>
+                <div class="education-list">
+                    {% for item in site.data.profile.education %}
+                    <div class="edu-item">
+                        <img src="{{ item.logo | relative_url }}" alt="{{ item.name }}" />
+                        <div class="edu-copy">
+                            <div class="edu-main">{{ item.name }}</div>
+                            <div class="edu-meta">{{ item.position }}</div>
+                        </div>
+                        <div class="edu-date">{{ item.date }}</div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
     </div>
+    {% endif %}
+
+    {% if site.data.display.homepage.show_news %}
+    {% assign count_news = site.news | size %}
+    {% if count_news > 0 %}
+    <div class="row home-grid">
+        <div class="col-12">
+            {% include widgets/news_card.html limit=site.data.display.homepage.num_news %}
+        </div>
+    </div>
+    {% endif %}
+    {% endif %}
+
+    {% if site.data.display.homepage.show_selected_publications %}
+    {% assign pubs = site.publications | sort: "date" | reverse | where: "selected", true %}
+    <div class="row home-grid">
+        <div class="col-12">
+            {% include widgets/publication_card.html publications=pubs title='<i class="fas fa-star"></i> Selected Publications' %}
+        </div>
+    </div>
+    {% endif %}
 </div>
