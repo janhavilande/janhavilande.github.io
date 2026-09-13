@@ -23,6 +23,39 @@ body {
         radial-gradient(circle at bottom right, rgba(91, 103, 245, 0.18), transparent 24%),
         var(--bg);
     color: var(--text);
+    position: relative;
+    overflow-x: hidden;
+}
+
+body::before,
+body::after {
+    content: "";
+    position: fixed;
+    inset: auto;
+    width: 32rem;
+    height: 32rem;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.28;
+    z-index: 0;
+    pointer-events: none;
+}
+
+body::before {
+    top: -10rem;
+    left: -8rem;
+    background: rgba(125, 211, 252, 0.7);
+}
+
+body::after {
+    right: -8rem;
+    bottom: -8rem;
+    background: rgba(167, 139, 250, 0.6);
+}
+
+body > * {
+    position: relative;
+    z-index: 1;
 }
 
 h1, h2, h3, h4, h5, h6,
@@ -95,6 +128,17 @@ p {
     box-shadow: var(--shadow);
     padding: 2rem;
     margin-bottom: 1.5rem;
+    transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+    transform-style: preserve-3d;
+}
+
+.tilt-panel {
+    will-change: transform;
+}
+
+.tilt-panel:hover {
+    box-shadow: 0 24px 52px rgba(24, 33, 47, 0.12);
+    border-color: rgba(91, 103, 245, 0.18);
 }
 
 .hero-copy h1 {
@@ -148,6 +192,23 @@ p {
     background: linear-gradient(135deg, var(--accent), #7c3aed);
     box-shadow: 0 12px 24px rgba(91, 103, 245, 0.28);
     color: #fff;
+    position: relative;
+    overflow: hidden;
+}
+
+.primary-btn::before,
+.secondary-btn::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(120deg, transparent, rgba(255,255,255,0.28), transparent);
+    transform: translateX(-120%);
+    transition: transform 0.5s ease;
+}
+
+.primary-btn:hover::before,
+.secondary-btn:hover::before {
+    transform: translateX(120%);
 }
 
 .secondary-btn {
@@ -236,6 +297,14 @@ p {
     box-shadow: var(--shadow);
     padding: 1.25rem 1.25rem 0.65rem;
     margin-top: 1.2rem;
+    transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+    transform-style: preserve-3d;
+}
+
+.modern-list-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 22px 46px rgba(24, 33, 47, 0.12);
+    border-color: rgba(91, 103, 245, 0.18);
 }
 
 .news-list {
@@ -273,6 +342,13 @@ p {
     border-radius: 0.85rem;
     background: rgba(91, 103, 245, 0.04);
     border: 1px solid rgba(91, 103, 245, 0.08);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.news-item:hover {
+    transform: translateX(4px);
+    box-shadow: 0 10px 22px rgba(91, 103, 245, 0.08);
+    border-color: rgba(91, 103, 245, 0.14);
 }
 
 .news-title {
