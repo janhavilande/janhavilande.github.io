@@ -32,9 +32,12 @@ navbar_title: Home
 
         <div class="hero-visual">
             {% if site.data.profile.portrait_url %}
-            <div class="portrait-wrap">
-                <img src="{{ site.data.profile.portrait_url | relative_url }}" alt="Janhavi Lande" />
-            </div>
+            <figure class="portrait-figure">
+                <div class="portrait-wrap">
+                    <img src="{{ site.data.profile.portrait_url | relative_url }}" alt="Janhavi Lande" />
+                </div>
+                <figcaption>Janhavi Lande</figcaption>
+            </figure>
             {% endif %}
         </div>
 
