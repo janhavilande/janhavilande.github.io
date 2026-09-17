@@ -44,14 +44,17 @@ navbar_title: Home
         <div class="bookshelf" aria-label="More reading, off the shelf">
             <div class="spine-row">
                 <a class="spine spine-ivy" href="{{ '/book' | relative_url }}" title="Ivied Walls — my poetry collection">
+                    <i class="fas fa-leaf spine-icon" aria-hidden="true"></i>
                     <span>Ivied Walls</span>
                 </a>
                 {% if site.data.profile.gscholar %}
                 <a class="spine spine-scholar" href="https://scholar.google.com/citations?user={{ site.data.profile.gscholar }}&hl=en" target="_blank" rel="noopener" title="My papers on Google Scholar">
+                    <i class="ai ai-google-scholar spine-icon" aria-hidden="true"></i>
                     <span>Google Scholar</span>
                 </a>
                 {% endif %}
                 <a class="spine spine-substack" href="https://substack.com/@pinched" target="_blank" rel="noopener" title="My writing on Substack">
+                    <i class="fab fa-substack spine-icon" aria-hidden="true"></i>
                     <span>Substack</span>
                 </a>
             </div>
