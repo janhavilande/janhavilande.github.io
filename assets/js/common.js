@@ -26,19 +26,24 @@ $(function () {
 
     $('[data-toggle="tooltip"]').tooltip()
 
-    $('.tilt-panel').each(function () {
-        var $panel = $(this);
-        $panel.on('pointermove', function (event) {
-            var rect = this.getBoundingClientRect();
-            var x = event.clientX - rect.left;
-            var y = event.clientY - rect.top;
-            var rotateY = ((x / rect.width) - 0.5) * 8;
-            var rotateX = (0.5 - (y / rect.height)) * 8;
-            $panel.css('transform', 'perspective(1200px) rotateX(' + rotateX + 'deg) rotateY(' + rotateY + 'deg) translateY(-2px)');
+    // Dark mode / light mode toggle
+    var $themeToggle = $('#themeToggle');
+    if ($themeToggle.length) {
+        function currentTheme() {
+            var attr = document.documentElement.getAttribute('data-theme');
+            if (attr) { return attr; }
+            return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        }
+        function updateIcon() {
+            var isDark = currentTheme() === 'dark';
+            $themeToggle.find('i').attr('class', isDark ? 'fas fa-sun' : 'fas fa-moon');
+        }
+        updateIcon();
+        $themeToggle.on('click', function () {
+            var next = currentTheme() === 'dark' ? 'light' : 'dark';
+            document.documentElement.setAttribute('data-theme', next);
+            try { localStorage.setItem('theme', next); } catch (e) {}
+            updateIcon();
         });
-
-        $panel.on('pointerleave', function () {
-            $panel.css('transform', 'perspective(1200px) rotateX(0deg) rotateY(0deg) translateY(0)');
-        });
-    });
+    }
 })
