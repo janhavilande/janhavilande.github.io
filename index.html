@@ -5,9 +5,8 @@ navbar_title: Home
 ---
 
 <section class="titlepage">
-    <canvas id="constellation" aria-hidden="true"></canvas>
 
-    <div class="hero-copy reveal">
+    <div class="hero-copy">
         <span class="eyebrow">Engineering Physics &bull; AI &amp; Data Science &bull; Poetry</span>
         <h1>Janhavi Lande</h1>
         <p class="subtitle">
@@ -32,7 +31,7 @@ navbar_title: Home
         </div>
     </div>
 
-    <div class="hero-visual reveal">
+    <div class="hero-visual">
         {% if site.data.profile.portrait_url %}
         <figure class="portrait-card">
             <span class="portrait-corner tl" aria-hidden="true"></span>
@@ -47,13 +46,13 @@ navbar_title: Home
 </section>
 
 <div class="teaser-grid">
-    <a class="teaser-card reveal" href="{{ '/research' | relative_url }}">
+    <a class="teaser-card" href="{{ '/research' | relative_url }}">
         <span class="label">From the notebook</span>
         <h3>Text-guided models for 3D materials</h3>
         <p>Reproducing a geometric deep learning paper from ICLR 2025 as a clean, production-quality notebook — auditing the source, and fixing what didn't actually work.</p>
         <span class="teaser-link">Read the research &rarr;</span>
     </a>
-    <a class="teaser-card reveal" href="{{ '/writing' | relative_url }}">
+    <a class="teaser-card" href="{{ '/writing' | relative_url }}">
         <span class="label">From the archive</span>
         <h3>Ivied Walls</h3>
         <p>A debut poetry collection about weathering, memory, and the ivy that finds its way through the cracks. My first published book.</p>

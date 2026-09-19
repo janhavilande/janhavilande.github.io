@@ -1,34 +1,32 @@
 @charset "utf-8";
 
 /* ===================================================================
-   Janhavi Lande — a personal archive, not a portfolio template.
-   Midnight navy + ivory/parchment + muted gold, with soft blue,
-   burgundy and forest green held in reserve as rare, section-specific
-   accents. Editorial serif for headings, clean sans for reading,
-   typewriter mono for small marginal notes and tags.
+   Janhavi Lande — kept simple: one clean sans-serif, a white
+   background, and small, quiet accents of navy and gold. No serif
+   display face, no mono annotations, no scroll animation.
    =================================================================== */
 
 :root {
     --navy: #16213d;
     --navy-deep: #0a1220;
-    --ivory: #f8f4ea;
-    --ivory-2: #f0e9d6;
-    --ink: #1c2333;
-    --ink-muted: #5c6478;
+    --ivory: #ffffff;
+    --ivory-2: #f4f5f7;
+    --ink: #202533;
+    --ink-muted: #626a7a;
     --gold: #b08d57;
     --gold-bright: #c9a870;
     --gold-soft: rgba(176, 141, 87, 0.32);
     --blue: #6f93c2;
     --burgundy: #6f2a3a;
     --forest: #33513f;
-    --border: rgba(22, 30, 48, 0.13);
-    --border-soft: rgba(22, 30, 48, 0.08);
-    --shadow: 0 18px 40px rgba(20, 26, 41, 0.10);
-    --shadow-lift: 0 22px 48px rgba(20, 26, 41, 0.16);
+    --border: rgba(22, 30, 48, 0.12);
+    --border-soft: rgba(22, 30, 48, 0.07);
+    --shadow: 0 10px 24px rgba(20, 26, 41, 0.07);
+    --shadow-lift: 0 14px 30px rgba(20, 26, 41, 0.11);
 
-    --font-serif: "Newsreader", "Iowan Old Style", serif;
-    --font-sans: "Inter", -apple-system, sans-serif;
-    --font-mono: "Space Mono", ui-monospace, monospace;
+    --font-serif: "Carlito", "Calibri", var(--font-sans);
+    --font-sans: "Carlito", "Calibri", "Inter", -apple-system, sans-serif;
+    --font-mono: var(--font-sans);
 }
 
 * {
@@ -36,7 +34,7 @@
 }
 
 html {
-    font-size: 17px;
+    font-size: 15px;
     scroll-behavior: smooth;
 }
 
@@ -66,16 +64,17 @@ body {
 
 h1, h2, h3, h4, h5, h6,
 .h1, .h2, .h3, .h4, .h5, .h6 {
-    font-family: var(--font-serif);
-    font-weight: 500;
-    letter-spacing: -0.01em;
+    font-family: var(--font-sans);
+    font-weight: 600;
+    letter-spacing: 0;
     color: var(--navy);
 }
 
 p {
     margin-bottom: 1rem;
-    line-height: 1.75;
+    line-height: 1.65;
     color: var(--ink-muted);
+    font-size: 0.98rem;
 }
 
 a {
@@ -101,26 +100,6 @@ a:hover {
     max-width: 1180px;
 }
 
-/* ---------------- Reveal-on-scroll ---------------- */
-
-.reveal {
-    opacity: 0;
-    transform: translateY(18px);
-    transition: opacity 0.7s ease, transform 0.7s ease;
-}
-
-.reveal.is-visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-@media (prefers-reduced-motion: reduce) {
-    .reveal {
-        opacity: 1;
-        transform: none;
-    }
-}
-
 /* ---------------- Navbar: an editorial table of contents ---------------- */
 
 .navbar {
@@ -132,9 +111,9 @@ a:hover {
 }
 
 .navbar-brand {
-    font-family: var(--font-serif);
-    font-weight: 500;
-    font-size: 1.2rem;
+    font-family: var(--font-sans);
+    font-weight: 600;
+    font-size: 1.05rem;
     color: var(--navy) !important;
 }
 
@@ -144,11 +123,11 @@ a:hover {
 }
 
 .nav-link {
-    font-family: var(--font-mono);
-    font-weight: 400;
-    font-size: 0.76rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
+    font-family: var(--font-sans);
+    font-weight: 500;
+    font-size: 0.82rem;
+    letter-spacing: 0.02em;
+    text-transform: none;
     color: var(--ink-muted) !important;
     padding: 0.4rem 0.9rem !important;
 }
@@ -167,10 +146,9 @@ a:hover {
 .navbar-toggler {
     color: var(--navy);
     border-color: var(--border) !important;
-    font-family: var(--font-mono);
-    font-size: 0.72rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
+    font-family: var(--font-sans);
+    font-size: 0.78rem;
+    letter-spacing: 0.02em;
 }
 
 /* ---------------- Buttons ---------------- */
@@ -180,13 +158,14 @@ a:hover {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    min-height: 44px;
-    padding: 0.65rem 1.4rem;
-    border-radius: 2px;
-    font-family: var(--font-mono);
-    font-size: 0.78rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
+    min-height: 42px;
+    padding: 0.6rem 1.3rem;
+    border-radius: 4px;
+    font-family: var(--font-sans);
+    font-weight: 600;
+    font-size: 0.86rem;
+    letter-spacing: 0;
+    text-transform: none;
     text-decoration: none !important;
     transition: transform 0.18s ease, opacity 0.18s ease;
 }
@@ -219,18 +198,7 @@ a:hover {
     grid-template-columns: 1.2fr 0.8fr;
     gap: 3rem;
     align-items: center;
-    padding: 3.5rem 0 4rem;
-    overflow: hidden;
-}
-
-#constellation {
-    position: absolute;
-    inset: -2rem -2rem auto -2rem;
-    height: 130%;
-    width: calc(100% + 4rem);
-    z-index: 0;
-    pointer-events: none;
-    opacity: 0.55;
+    padding: 2.75rem 0 3.25rem;
 }
 
 .hero-copy {
@@ -240,29 +208,29 @@ a:hover {
 
 .eyebrow {
     display: block;
-    font-family: var(--font-mono);
-    font-size: 0.78rem;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
+    font-family: var(--font-sans);
+    font-size: 0.8rem;
+    letter-spacing: 0.03em;
+    text-transform: none;
     color: var(--gold);
-    margin-bottom: 1rem;
+    margin-bottom: 0.8rem;
 }
 
 .titlepage h1 {
-    font-size: clamp(2.8rem, 6vw, 4.6rem);
-    line-height: 1.02;
-    margin: 0 0 1rem;
-    font-style: italic;
-    font-weight: 500;
+    font-size: clamp(2rem, 4vw, 2.8rem);
+    line-height: 1.15;
+    margin: 0 0 0.8rem;
+    font-style: normal;
+    font-weight: 700;
 }
 
 .titlepage .subtitle {
-    font-family: var(--font-serif);
-    font-size: 1.28rem;
-    max-width: 540px;
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    max-width: 480px;
     line-height: 1.6;
     color: var(--ink-muted);
-    margin-bottom: 1.6rem;
+    margin-bottom: 1.4rem;
 }
 
 .hero-actions {
@@ -294,60 +262,45 @@ a:hover {
     justify-content: center;
 }
 
-/* ---------------- The portrait: an archival card, not a headshot ---------------- */
+/* ---------------- The portrait: a plain, clean photo ---------------- */
 
 .portrait-card {
     position: relative;
-    width: min(100%, 280px);
-    background: var(--navy);
-    padding: 0.9rem 0.9rem 1.5rem;
-    border-radius: 2px;
-    box-shadow: var(--shadow-lift);
-    transform: rotate(-1.5deg);
-}
-
-.portrait-card::before {
-    content: "";
-    position: absolute;
-    inset: 0.55rem;
-    border: 1px solid rgba(201, 168, 112, 0.4);
-    pointer-events: none;
+    width: min(100%, 260px);
+    background: #fff;
+    padding: 0;
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border);
+    overflow: hidden;
 }
 
 .portrait-photo {
     width: 100%;
     aspect-ratio: 3 / 4;
     overflow: hidden;
-    background: var(--navy-deep);
+    background: var(--ivory-2);
 }
 
 .portrait-photo img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    filter: sepia(0.12) saturate(0.92) contrast(1.05);
 }
 
 .portrait-caption {
-    margin: 0.9rem 0 0;
+    margin: 0;
+    padding: 0.65rem 0;
     text-align: center;
-    font-family: var(--font-mono);
-    font-size: 0.68rem;
-    letter-spacing: 0.09em;
-    text-transform: uppercase;
-    color: var(--gold-bright);
+    font-family: var(--font-sans);
+    font-size: 0.78rem;
+    letter-spacing: 0.02em;
+    color: var(--ink-muted);
 }
 
 .portrait-corner {
-    position: absolute;
-    width: 22px;
-    height: 22px;
-    border: 1px solid var(--gold);
-    opacity: 0.7;
+    display: none;
 }
-
-.portrait-corner.tl { top: -6px; left: -6px; border-right: none; border-bottom: none; }
-.portrait-corner.br { bottom: -6px; right: -6px; border-left: none; border-top: none; }
 
 /* ================================================================
    Teasers (home) — a research highlight, a writing highlight
@@ -380,20 +333,21 @@ a:hover {
 }
 
 .teaser-card h3 {
-    font-size: 1.5rem;
-    margin-bottom: 0.7rem;
+    font-size: 1.2rem;
+    margin-bottom: 0.6rem;
 }
 
 .teaser-card p {
-    font-size: 0.98rem;
-    margin-bottom: 1.2rem;
+    font-size: 0.9rem;
+    margin-bottom: 1.1rem;
 }
 
 .teaser-link {
-    font-family: var(--font-mono);
-    font-size: 0.76rem;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
+    font-family: var(--font-sans);
+    font-weight: 600;
+    font-size: 0.84rem;
+    letter-spacing: 0;
+    text-transform: none;
     color: var(--navy);
     text-decoration: none;
 }
@@ -411,24 +365,25 @@ a:hover {
 }
 
 .page-mark {
-    font-family: var(--font-mono);
-    font-size: 0.76rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
+    font-family: var(--font-sans);
+    font-size: 0.8rem;
+    letter-spacing: 0.03em;
+    text-transform: none;
     color: var(--gold);
-    margin-bottom: 0.6rem;
+    margin-bottom: 0.5rem;
 }
 
 .page-title {
-    font-size: clamp(2.1rem, 4vw, 3rem);
-    font-style: italic;
+    font-size: clamp(1.7rem, 3vw, 2.2rem);
+    font-style: normal;
+    font-weight: 700;
     margin-bottom: 0.6rem;
 }
 
 .page-intro {
     max-width: 620px;
-    font-size: 1.08rem;
-    margin-bottom: 3rem;
+    font-size: 0.98rem;
+    margin-bottom: 2.5rem;
 }
 
 .rule {
@@ -455,31 +410,32 @@ a:hover {
 }
 
 .entry-num {
-    font-family: var(--font-mono);
-    font-size: 0.82rem;
+    font-family: var(--font-sans);
+    font-weight: 600;
+    font-size: 0.86rem;
     color: var(--gold);
-    letter-spacing: 0.05em;
-    padding-top: 0.3rem;
+    letter-spacing: 0;
+    padding-top: 0.2rem;
 }
 
 .entry-tagline {
-    font-family: var(--font-mono);
-    font-size: 0.76rem;
-    letter-spacing: 0.05em;
+    font-family: var(--font-sans);
+    font-size: 0.8rem;
+    letter-spacing: 0;
     color: var(--ink-muted);
-    text-transform: uppercase;
-    margin-bottom: 0.8rem;
+    text-transform: none;
+    margin-bottom: 0.6rem;
 }
 
 .entry h3 {
-    font-size: 1.7rem;
-    margin-bottom: 0.7rem;
+    font-size: 1.3rem;
+    margin-bottom: 0.6rem;
     max-width: 620px;
 }
 
 .entry p {
     max-width: 620px;
-    font-size: 1rem;
+    font-size: 0.94rem;
 }
 
 .entry-tags {
@@ -490,23 +446,24 @@ a:hover {
 }
 
 .entry-tags span {
-    font-family: var(--font-mono);
-    font-size: 0.68rem;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
+    font-family: var(--font-sans);
+    font-size: 0.74rem;
+    letter-spacing: 0;
+    text-transform: none;
     color: var(--navy);
     background: var(--ivory-2);
     border: 1px solid var(--border);
-    padding: 0.25rem 0.6rem;
+    padding: 0.22rem 0.6rem;
     border-radius: 20px;
 }
 
 .entry-more-toggle,
 .entry-read-link {
-    font-family: var(--font-mono);
-    font-size: 0.78rem;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
+    font-family: var(--font-sans);
+    font-weight: 600;
+    font-size: 0.84rem;
+    letter-spacing: 0;
+    text-transform: none;
     color: var(--navy);
     background: none;
     border: none;
@@ -538,11 +495,12 @@ a:hover {
    ================================================================ */
 
 .pub-year {
-    font-family: var(--font-serif);
-    font-style: italic;
-    font-size: 1.6rem;
+    font-family: var(--font-sans);
+    font-style: normal;
+    font-weight: 700;
+    font-size: 1.25rem;
     color: var(--navy);
-    margin: 2.4rem 0 1rem;
+    margin: 2.2rem 0 0.9rem;
 }
 
 .my-0.bg-white,
@@ -554,8 +512,8 @@ a:hover {
 
 .abstract-links a {
     color: var(--navy);
-    font-family: var(--font-mono);
-    font-size: 0.76rem;
+    font-family: var(--font-sans);
+    font-size: 0.82rem;
 }
 
 .border-gray {
@@ -612,11 +570,12 @@ a:hover {
 }
 
 .writing-page p {
-    color: rgba(248, 244, 234, 0.72);
+    color: rgba(255, 255, 255, 0.72);
+    font-size: 0.94rem;
 }
 
 .writing-page .rule {
-    background: rgba(248, 244, 234, 0.14);
+    background: rgba(255, 255, 255, 0.14);
 }
 
 .book-plate {
@@ -628,36 +587,37 @@ a:hover {
 }
 
 .book-plate .kind {
-    font-family: var(--font-mono);
-    font-size: 0.74rem;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
+    font-family: var(--font-sans);
+    font-size: 0.78rem;
+    letter-spacing: 0.03em;
+    text-transform: none;
     color: var(--gold-bright);
 }
 
 .book-plate h2 {
-    font-size: clamp(2.4rem, 5vw, 3.4rem);
-    font-style: italic;
+    font-size: clamp(1.9rem, 4vw, 2.6rem);
+    font-style: normal;
+    font-weight: 700;
     color: var(--ivory);
-    margin: 0.6rem 0 1.3rem;
+    margin: 0.5rem 0 1.1rem;
 }
 
 .book-plate .poem-count {
-    font-family: var(--font-mono);
-    font-size: 0.8rem;
-    letter-spacing: 0.06em;
-    color: rgba(248, 244, 234, 0.55);
-    margin-bottom: 1.6rem;
+    font-family: var(--font-sans);
+    font-size: 0.84rem;
+    letter-spacing: 0;
+    color: rgba(255, 255, 255, 0.55);
+    margin-bottom: 1.4rem;
 }
 
 .book-tagline {
-    font-family: var(--font-serif);
-    font-style: italic;
-    font-size: 1.3rem;
+    font-family: var(--font-sans);
+    font-style: normal;
+    font-size: 1.05rem;
     color: var(--ivory);
     border-left: 2px solid var(--burgundy);
     padding-left: 1.2rem;
-    margin: 0 auto 1.6rem;
+    margin: 0 auto 1.4rem;
     max-width: 520px;
     text-align: left;
 }
@@ -686,12 +646,12 @@ a:hover {
     z-index: 1;
     max-width: 560px;
     margin: 0 auto;
-    font-family: var(--font-mono);
+    font-family: var(--font-sans);
     font-size: 0.86rem;
-    line-height: 1.9;
-    color: rgba(248, 244, 234, 0.6);
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.55);
     text-align: center;
-    font-style: italic;
+    font-style: normal;
 }
 
 /* ================================================================
@@ -707,20 +667,11 @@ a:hover {
 
 .about-grid .portrait-card {
     width: 100%;
-    transform: rotate(1deg);
 }
 
 .about-copy p {
-    font-size: 1.06rem;
+    font-size: 0.96rem;
     max-width: 560px;
-}
-
-.about-copy p:first-of-type::first-letter {
-    font-family: var(--font-serif);
-    font-size: 2.6rem;
-    font-style: italic;
-    color: var(--gold);
-    padding-right: 0.15rem;
 }
 
 .about-facts {
@@ -733,17 +684,18 @@ a:hover {
 }
 
 .about-facts dt {
-    font-family: var(--font-mono);
-    font-size: 0.68rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
+    font-family: var(--font-sans);
+    font-size: 0.72rem;
+    letter-spacing: 0.03em;
+    text-transform: none;
     color: var(--gold);
-    margin-bottom: 0.25rem;
+    margin-bottom: 0.2rem;
 }
 
 .about-facts dd {
-    font-family: var(--font-serif);
-    font-size: 1.02rem;
+    font-family: var(--font-sans);
+    font-weight: 600;
+    font-size: 0.92rem;
     color: var(--ink);
     margin: 0;
 }
@@ -760,11 +712,11 @@ a:hover {
 }
 
 .footer-mark {
-    font-family: var(--font-mono);
-    font-size: 0.7rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--ink-muted);
+    font-family: var(--font-sans);
+    font-size: 0.85rem;
+    letter-spacing: 0;
+    text-transform: none;
+    color: var(--gold);
     margin-bottom: 0.5rem;
 }
 
@@ -773,9 +725,9 @@ a:hover {
     justify-content: space-between;
     align-items: center;
     gap: 1rem;
-    font-family: var(--font-mono);
-    font-size: 0.76rem;
-    letter-spacing: 0.03em;
+    font-family: var(--font-sans);
+    font-size: 0.82rem;
+    letter-spacing: 0;
     color: var(--ink-muted);
 }
 

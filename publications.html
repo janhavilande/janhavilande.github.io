@@ -9,8 +9,8 @@ body_attr: >-
 
 <div class="page-shell">
     <p class="page-mark">A Selected Bibliography</p>
-    <h1 class="page-title reveal">Publications</h1>
-    <p class="page-intro reveal">Peer-reviewed papers, preprints, and datasets — catalogued by year.</p>
+    <h1 class="page-title">Publications</h1>
+    <p class="page-intro">Peer-reviewed papers, preprints, and datasets — catalogued by year.</p>
 
     {% assign pubs_by_year = site.publications | sort: "date" | reverse | group_by_exp: "item", "item.date | date: '%Y'" %}
 
