@@ -2,27 +2,31 @@
 layout: default
 title: Research
 navbar_title: Research
-description: "Research notebook — AI, machine learning, and scientific research spanning materials science, financial ML, and NLP."
+description: "Research notebook — AI, machine learning, and scientific research spanning applied finance and public-health NLP."
 ---
 
 <div class="page-shell">
-    <p class="page-mark">A Research Notebook</p>
+    <p class="page-mark"><span aria-hidden="true">&#10022;</span> A Research Notebook</p>
     <h1 class="page-title">Where the questions live</h1>
     <p class="page-intro">
         Not a list of accomplishments so much as a running record — the problems I've been
-        auditing, breaking, and slowly getting to work, across materials science, applied machine
-        learning, and language.
+        auditing, breaking, and slowly getting to work, across applied machine learning and
+        language.
     </p>
 
     {% for entry in site.data.research %}
-    <article class="entry">
-        <div class="entry-num">{{ forloop.index | prepend: "00" | slice: -2, 2 }}</div>
+    <article class="entry reveal" id="{{ entry.slug }}">
+        <div class="entry-num">
+            Research Note
+            <span class="entry-num-figure">{{ forloop.index | prepend: "00" | slice: -2, 2 }}</span>
+        </div>
         <div>
             <p class="entry-tagline">{{ entry.tagline }}</p>
             <h3>{{ entry.title }}</h3>
             <p>{{ entry.summary }}</p>
             <div class="entry-tags">
                 {% for tag in entry.tags %}<span>{{ tag }}</span>{% endfor %}
+                {% if entry.margin_note %}<span class="margin-note">{{ entry.margin_note }}</span>{% endif %}
             </div>
             {% if entry.read_more_url %}
             <a class="entry-read-link" href="{{ entry.read_more_url | relative_url }}">{{ entry.read_more_label | default: "Read more" }} &rarr;</a>
@@ -32,7 +36,28 @@ description: "Research notebook — AI, machine learning, and scientific researc
                 <p>{{ entry.detail }}</p>
             </div>
             {% endif %}
+            <button
+                type="button"
+                class="entry-expand"
+                data-note-title="{{ entry.title | escape }}"
+                data-note-tagline="{{ entry.tagline | escape }}"
+                data-note-summary="{{ entry.summary | strip_newlines | escape }}"
+                data-note-detail="{{ entry.detail | strip_newlines | escape }}"
+                data-note-tags="{{ entry.tags | join: ', ' | escape }}"
+            >Open as a full note &#10021;</button>
         </div>
     </article>
     {% endfor %}
+</div>
+
+<div class="note-modal" id="note-modal" aria-hidden="true">
+    <div class="note-modal-backdrop" data-modal-close></div>
+    <div class="note-modal-panel" role="dialog" aria-modal="true" aria-labelledby="note-modal-title">
+        <button type="button" class="note-modal-close" data-modal-close aria-label="Close">&times;</button>
+        <p class="note-modal-tagline" id="note-modal-tagline"></p>
+        <h2 class="note-modal-title" id="note-modal-title"></h2>
+        <p class="note-modal-summary" id="note-modal-summary"></p>
+        <p class="note-modal-detail" id="note-modal-detail"></p>
+        <div class="note-modal-tags" id="note-modal-tags"></div>
+    </div>
 </div>

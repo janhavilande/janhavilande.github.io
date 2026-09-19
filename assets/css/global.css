@@ -1,31 +1,36 @@
 @charset "utf-8";
 
 /* ===================================================================
-   Janhavi Lande — kept simple: one clean sans-serif, a white
-   background, and small, quiet accents of navy and gold. No serif
-   display face, no mono annotations, no scroll animation.
+   Janhavi Lande — a personal research notebook, not a portfolio.
+   Deep ink navy + warm parchment, with muted gold, dusty blue,
+   restrained burgundy and forest green held as rare accents.
+   Fraunces for display type (editorial, slightly literary), DM Sans
+   for reading and UI, Caveat for the handwritten margin notes.
    =================================================================== */
 
 :root {
     --navy: #16213d;
     --navy-deep: #0a1220;
-    --ivory: #ffffff;
-    --ivory-2: #f4f5f7;
-    --ink: #202533;
-    --ink-muted: #626a7a;
-    --gold: #b08d57;
+    --ivory: #faf7f0;
+    --ivory-2: #f1ebdb;
+    --paper: #fffdf9;
+    --ink: #1f2434;
+    --ink-muted: #5c6478;
+    --gold: #a9824f;
     --gold-bright: #c9a870;
-    --gold-soft: rgba(176, 141, 87, 0.32);
+    --gold-soft: rgba(169, 130, 79, 0.3);
     --blue: #6f93c2;
     --burgundy: #6f2a3a;
     --forest: #33513f;
-    --border: rgba(22, 30, 48, 0.12);
-    --border-soft: rgba(22, 30, 48, 0.07);
-    --shadow: 0 10px 24px rgba(20, 26, 41, 0.07);
-    --shadow-lift: 0 14px 30px rgba(20, 26, 41, 0.11);
+    --substack: #ff6719;
+    --border: rgba(22, 30, 48, 0.13);
+    --border-soft: rgba(22, 30, 48, 0.08);
+    --shadow: 0 10px 24px rgba(20, 26, 41, 0.08);
+    --shadow-lift: 0 18px 36px rgba(20, 26, 41, 0.14);
 
-    --font-serif: "Newsreader", "Iowan Old Style", serif;
-    --font-sans: "Carlito", "Calibri", "Inter", -apple-system, sans-serif;
+    --font-display: "Fraunces", "Iowan Old Style", serif;
+    --font-sans: "DM Sans", "Inter", -apple-system, sans-serif;
+    --font-hand: "Caveat", cursive;
     --font-mono: var(--font-sans);
 }
 
@@ -44,7 +49,9 @@ html {
     }
     * {
         animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
         transition-duration: 0.001ms !important;
+        scroll-behavior: auto !important;
     }
 }
 
@@ -52,7 +59,10 @@ body {
     font-family: var(--font-sans);
     font-weight: 400;
     padding-top: 4.75rem;
-    background: var(--ivory);
+    background:
+        radial-gradient(circle, rgba(169, 130, 79, 0.5) 0.6px, transparent 0.6px) 0 0 / 22px 22px,
+        var(--ivory);
+    background-attachment: fixed;
     color: var(--ink);
     -webkit-font-smoothing: antialiased;
 }
@@ -62,17 +72,39 @@ body {
     color: var(--navy);
 }
 
+::-moz-selection {
+    background: var(--gold-soft);
+    color: var(--navy);
+}
+
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: var(--ivory); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 6px; }
+
 h1, h2, h3, h4, h5, h6,
 .h1, .h2, .h3, .h4, .h5, .h6 {
-    font-family: var(--font-serif);
+    font-family: var(--font-display);
     font-weight: 600;
-    letter-spacing: -0.005em;
+    letter-spacing: -0.01em;
+    color: var(--navy);
+}
+
+em, i.italic {
+    font-style: italic;
+}
+
+p em,
+.lede em,
+.hero-lede em {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 500;
     color: var(--navy);
 }
 
 p {
     margin-bottom: 1rem;
-    line-height: 1.65;
+    line-height: 1.7;
     color: var(--ink-muted);
     font-size: 0.98rem;
 }
@@ -88,7 +120,7 @@ a:hover {
 }
 
 .label {
-    font-family: var(--font-mono);
+    font-family: var(--font-sans);
     font-size: 0.72rem;
     letter-spacing: 0.1em;
     text-transform: uppercase;
@@ -100,10 +132,31 @@ a:hover {
     max-width: 1180px;
 }
 
+/* A small handwritten annotation, used sparingly throughout the site. */
+.margin-note {
+    display: inline-block;
+    font-family: var(--font-hand);
+    font-size: 1.15rem;
+    line-height: 1.1;
+    color: var(--gold);
+    transform: rotate(-2deg);
+    white-space: nowrap;
+}
+
+.margin-note.margin-note-block {
+    display: block;
+    white-space: normal;
+    max-width: 260px;
+}
+
+.margin-note::before {
+    content: "— ";
+}
+
 /* ---------------- Navbar: an editorial table of contents ---------------- */
 
 .navbar {
-    background: rgba(248, 244, 234, 0.92) !important;
+    background: rgba(250, 247, 240, 0.92) !important;
     backdrop-filter: blur(10px);
     border-bottom: 1px solid var(--border-soft);
     box-shadow: none;
@@ -111,9 +164,9 @@ a:hover {
 }
 
 .navbar-brand {
-    font-family: var(--font-serif);
+    font-family: var(--font-display);
     font-weight: 600;
-    font-size: 1.15rem;
+    font-size: 1.2rem;
     color: var(--navy) !important;
 }
 
@@ -195,10 +248,10 @@ a:hover {
 .titlepage {
     position: relative;
     display: grid;
-    grid-template-columns: 1.2fr 0.8fr;
-    gap: 3rem;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 2.5rem;
     align-items: center;
-    padding: 2.75rem 0 3.25rem;
+    padding: 3rem 0 2.5rem;
 }
 
 .hero-copy {
@@ -210,27 +263,37 @@ a:hover {
     display: block;
     font-family: var(--font-sans);
     font-size: 0.8rem;
-    letter-spacing: 0.03em;
-    text-transform: none;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
     color: var(--gold);
-    margin-bottom: 0.8rem;
+    margin-bottom: 1.1rem;
 }
 
-.titlepage h1 {
-    font-size: clamp(2rem, 4vw, 2.8rem);
-    line-height: 1.15;
-    margin: 0 0 0.8rem;
-    font-style: normal;
-    font-weight: 700;
+.hero-name {
+    margin: 0 0 1.3rem;
+    font-size: clamp(3.2rem, 9vw, 6rem);
+    line-height: 0.94;
+    font-weight: 500;
+    letter-spacing: -0.02em;
 }
 
-.titlepage .subtitle {
+.hero-name-line {
+    display: block;
+}
+
+.hero-name-line.is-accent {
+    font-style: italic;
+    color: var(--gold);
+    margin-left: clamp(0.5rem, 4vw, 2.2rem);
+}
+
+.hero-lede {
     font-family: var(--font-sans);
-    font-size: 1rem;
-    max-width: 480px;
-    line-height: 1.6;
+    font-size: 1.08rem;
+    max-width: 470px;
+    line-height: 1.7;
     color: var(--ink-muted);
-    margin-bottom: 1.4rem;
+    margin-bottom: 1.6rem;
 }
 
 .hero-actions {
@@ -243,7 +306,7 @@ a:hover {
 .social-row {
     display: flex;
     gap: 1.1rem;
-    font-size: 1.15rem;
+    font-size: 1.1rem;
 }
 
 .social-row a {
@@ -259,20 +322,27 @@ a:hover {
     position: relative;
     z-index: 1;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
 }
 
-/* ---------------- The portrait: a plain, clean photo ---------------- */
+/* ---------------- The portrait: an archival, framed object ---------------- */
 
 .portrait-card {
     position: relative;
-    width: min(100%, 260px);
-    background: #fff;
-    padding: 0;
-    border-radius: 8px;
-    box-shadow: var(--shadow);
+    width: min(100%, 250px);
+    background: var(--paper);
+    padding: 0.6rem 0.6rem 0;
+    border-radius: 2px;
+    box-shadow: var(--shadow-lift);
     border: 1px solid var(--border);
-    overflow: hidden;
+    transform: rotate(-1.4deg);
+    transition: transform 0.35s ease;
+}
+
+.portrait-card:hover {
+    transform: rotate(0deg);
 }
 
 .portrait-photo {
@@ -280,26 +350,317 @@ a:hover {
     aspect-ratio: 3 / 4;
     overflow: hidden;
     background: var(--ivory-2);
+    border: 1px solid var(--border-soft);
 }
 
 .portrait-photo img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    filter: saturate(0.94) contrast(1.02);
 }
 
 .portrait-caption {
     margin: 0;
-    padding: 0.65rem 0;
+    padding: 0.7rem 0 0.85rem;
     text-align: center;
-    font-family: var(--font-sans);
-    font-size: 0.78rem;
-    letter-spacing: 0.02em;
+    font-family: var(--font-hand);
+    font-size: 1.15rem;
     color: var(--ink-muted);
 }
 
 .portrait-corner {
     display: none;
+}
+
+/* ---------------- Bookshelf ---------------- */
+
+.bookshelf-wrap {
+    text-align: center;
+}
+
+.bookshelf-label {
+    display: block;
+    font-family: var(--font-hand);
+    font-size: 1.1rem;
+    color: var(--ink-muted);
+    margin-bottom: 0.6rem;
+    transform: rotate(-1deg);
+}
+
+.bookshelf {
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 0.55rem;
+    padding-bottom: 0.6rem;
+}
+
+.bookshelf::after {
+    content: "";
+    position: absolute;
+    left: -0.5rem;
+    right: -0.5rem;
+    bottom: 0;
+    height: 6px;
+    background: linear-gradient(180deg, var(--border), transparent);
+    border-radius: 2px;
+}
+
+.book {
+    position: relative;
+    width: 34px;
+    height: 148px;
+    border-radius: 2px 5px 5px 2px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding-bottom: 0.7rem;
+    text-decoration: none !important;
+    box-shadow: var(--shadow), inset -3px 0 0 rgba(0, 0, 0, 0.12);
+    transform-origin: bottom center;
+    transition: transform 0.28s ease, box-shadow 0.28s ease;
+}
+
+.book:nth-child(1) { transform: rotate(-2deg); }
+.book:nth-child(2) { transform: rotate(1.5deg); }
+.book:nth-child(3) { transform: rotate(-1deg); }
+.book:nth-child(4) { transform: rotate(2deg); }
+
+.book:hover,
+.book:focus-visible {
+    transform: translateY(-16px) rotate(0deg);
+    box-shadow: var(--shadow-lift), inset -3px 0 0 rgba(0, 0, 0, 0.12);
+    z-index: 2;
+    outline: none;
+}
+
+.book-poetry { background: var(--burgundy); }
+.book-scholar { background: var(--blue); }
+.book-substack { background: var(--substack); }
+.book-research { background: var(--forest); }
+
+.book-spine-title {
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 0.76rem;
+    letter-spacing: 0.02em;
+    color: rgba(255, 255, 255, 0.92);
+    white-space: nowrap;
+}
+
+.book-note {
+    position: absolute;
+    bottom: -1.9rem;
+    left: 50%;
+    transform: translateX(-50%) translateY(4px);
+    font-family: var(--font-hand);
+    font-size: 1rem;
+    color: var(--ink-muted);
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.22s ease, transform 0.22s ease;
+}
+
+.book:hover .book-note,
+.book:focus-visible .book-note {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+
+/* ================================================================
+   CONSTELLATION — "Follow My Curiosity"
+   ================================================================ */
+
+.curiosity-section {
+    padding: 1rem 0 4rem;
+}
+
+.curiosity-intro {
+    max-width: 560px;
+    margin: 0 auto 2.4rem;
+    text-align: center;
+}
+
+.curiosity-intro .page-mark {
+    justify-content: center;
+}
+
+.curiosity-intro h2 {
+    font-size: clamp(1.6rem, 3vw, 2.1rem);
+    margin-bottom: 0.7rem;
+}
+
+.curiosity-intro p {
+    font-size: 0.98rem;
+}
+
+.constellation {
+    position: relative;
+    width: min(100%, 640px);
+    aspect-ratio: 1 / 0.82;
+    margin: 0 auto;
+}
+
+.constellation-lines {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+}
+
+.constellation-lines line {
+    stroke: var(--border);
+    stroke-width: 0.45;
+    transition: stroke 0.3s ease, stroke-width 0.3s ease, opacity 0.3s ease;
+}
+
+.constellation-lines line.is-active {
+    stroke: var(--gold);
+    stroke-width: 0.7;
+}
+
+.constellation.has-focus .constellation-lines line:not(.is-active) {
+    opacity: 0.35;
+}
+
+.constellation-node {
+    position: absolute;
+    top: var(--y);
+    left: var(--x);
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+    background: none;
+    border: none;
+    padding: 0.3rem;
+    cursor: pointer;
+    font-family: var(--font-sans);
+    z-index: 2;
+}
+
+.node-dot {
+    width: 13px;
+    height: 13px;
+    border-radius: 50%;
+    background: var(--paper);
+    border: 2px solid var(--navy);
+    transition: transform 0.25s ease, background 0.25s ease, border-color 0.25s ease;
+}
+
+.constellation-node:hover .node-dot,
+.constellation-node:focus-visible .node-dot,
+.constellation-node.is-active .node-dot {
+    background: var(--gold);
+    border-color: var(--gold);
+    transform: scale(1.35);
+}
+
+.node-label {
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    color: var(--navy);
+    background: rgba(250, 247, 240, 0.88);
+    padding: 0.05rem 0.4rem;
+    border-radius: 3px;
+    white-space: nowrap;
+}
+
+.constellation.has-focus .constellation-node:not(:hover):not(:focus-visible):not(.is-active) .node-label {
+    color: var(--ink-muted);
+}
+
+.constellation-caption {
+    max-width: 620px;
+    margin: 2rem auto 0;
+    min-height: 4.6rem;
+    padding: 1.1rem 1.4rem;
+    background: var(--paper);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--gold);
+    border-radius: 2px;
+    box-shadow: var(--shadow);
+    text-align: left;
+}
+
+.constellation-caption-eyebrow {
+    display: block;
+    font-family: var(--font-sans);
+    font-size: 0.72rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.35rem;
+}
+
+.constellation-caption-text {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 1.08rem;
+    color: var(--ink);
+    margin: 0;
+    line-height: 1.55;
+}
+
+.constellation-caption-link {
+    display: inline-block;
+    margin-top: 0.5rem;
+    font-family: var(--font-sans);
+    font-weight: 600;
+    font-size: 0.84rem;
+}
+
+/* ================================================================
+   Scroll storytelling — gentle, safe reveal (visible by default;
+   JS only arms the hidden state, and always has a timeout fallback,
+   so content can never get permanently stuck invisible).
+   ================================================================ */
+
+.reveal.reveal-armed {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.reveal.reveal-armed.is-visible {
+    opacity: 1;
+    transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .reveal.reveal-armed {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+}
+
+.story-beat {
+    text-align: center;
+    max-width: 480px;
+    margin: 3.2rem auto;
+    padding: 0 1rem;
+}
+
+.story-beat p {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: clamp(1.15rem, 2.4vw, 1.5rem);
+    color: var(--navy);
+    line-height: 1.5;
+}
+
+.story-beat .label {
+    display: block;
+    margin-top: 0.6rem;
 }
 
 /* ================================================================
@@ -315,7 +676,7 @@ a:hover {
 
 .teaser-card {
     position: relative;
-    background: #fff;
+    background: var(--paper);
     border: 1px solid var(--border);
     border-radius: 3px;
     padding: 2.2rem;
@@ -333,7 +694,7 @@ a:hover {
 }
 
 .teaser-card h3 {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     margin-bottom: 0.6rem;
 }
 
@@ -365,18 +726,21 @@ a:hover {
 }
 
 .page-mark {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
     font-family: var(--font-sans);
     font-size: 0.8rem;
-    letter-spacing: 0.03em;
-    text-transform: none;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
     color: var(--gold);
     margin-bottom: 0.5rem;
 }
 
 .page-title {
-    font-size: clamp(1.7rem, 3vw, 2.2rem);
+    font-size: clamp(1.9rem, 3.4vw, 2.5rem);
     font-style: normal;
-    font-weight: 700;
+    font-weight: 600;
     margin-bottom: 0.6rem;
 }
 
@@ -394,28 +758,41 @@ a:hover {
 }
 
 /* ================================================================
-   RESEARCH — notebook entries
+   RESEARCH — an archive of notes
    ================================================================ */
 
 .entry {
+    position: relative;
     display: grid;
-    grid-template-columns: 90px 1fr;
+    grid-template-columns: 130px 1fr;
     gap: 1.5rem;
     padding: 2.6rem 0;
-    border-top: 1px solid var(--border);
+    border-top: 1px dashed var(--border);
 }
 
 .entry:first-of-type {
-    border-top: 1px solid var(--border);
+    border-top: 1px dashed var(--border);
 }
 
 .entry-num {
     font-family: var(--font-sans);
     font-weight: 600;
-    font-size: 0.86rem;
+    font-size: 0.72rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
     color: var(--gold);
+    padding-top: 0.25rem;
+}
+
+.entry-num .entry-num-figure {
+    display: block;
+    font-family: var(--font-display);
+    font-size: 1.7rem;
+    font-weight: 500;
     letter-spacing: 0;
-    padding-top: 0.2rem;
+    text-transform: none;
+    color: var(--navy);
+    margin-top: 0.15rem;
 }
 
 .entry-tagline {
@@ -428,7 +805,7 @@ a:hover {
 }
 
 .entry h3 {
-    font-size: 1.3rem;
+    font-size: 1.5rem;
     margin-bottom: 0.6rem;
     max-width: 620px;
 }
@@ -441,6 +818,7 @@ a:hover {
 .entry-tags {
     display: flex;
     flex-wrap: wrap;
+    align-items: center;
     gap: 0.5rem;
     margin: 0.9rem 0 1.1rem;
 }
@@ -458,7 +836,8 @@ a:hover {
 }
 
 .entry-more-toggle,
-.entry-read-link {
+.entry-read-link,
+.entry-expand {
     font-family: var(--font-sans);
     font-weight: 600;
     font-size: 0.84rem;
@@ -473,8 +852,13 @@ a:hover {
 }
 
 .entry-more-toggle:hover,
-.entry-read-link:hover {
+.entry-read-link:hover,
+.entry-expand:hover {
     color: var(--gold);
+}
+
+.entry-expand {
+    margin-left: 1.2rem;
 }
 
 .entry-detail {
@@ -490,15 +874,122 @@ a:hover {
     display: block;
 }
 
+/* ---- Research note modal ---- */
+
+.note-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 60;
+    display: none;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 4vh 1rem;
+    overflow-y: auto;
+}
+
+.note-modal.is-open {
+    display: flex;
+}
+
+.note-modal-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(10, 18, 32, 0.6);
+}
+
+.note-modal-panel {
+    position: relative;
+    z-index: 1;
+    width: min(100%, 620px);
+    background: var(--paper);
+    border-radius: 3px;
+    box-shadow: var(--shadow-lift);
+    padding: 2.6rem 2.4rem;
+    animation: note-modal-in 0.28s ease;
+}
+
+@keyframes note-modal-in {
+    from { opacity: 0; transform: translateY(14px); }
+    to { opacity: 1; transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .note-modal-panel { animation: none; }
+}
+
+.note-modal-close {
+    position: absolute;
+    top: 1rem;
+    right: 1.1rem;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 1px solid var(--border);
+    background: var(--ivory);
+    color: var(--ink-muted);
+    font-size: 1.2rem;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.note-modal-close:hover {
+    color: var(--gold);
+    border-color: var(--gold);
+}
+
+.note-modal-tagline {
+    font-family: var(--font-sans);
+    font-size: 0.8rem;
+    letter-spacing: 0.03em;
+    color: var(--gold);
+    margin-bottom: 0.4rem;
+}
+
+.note-modal-title {
+    font-size: clamp(1.4rem, 3vw, 1.9rem);
+    margin-bottom: 1rem;
+    padding-right: 1.5rem;
+}
+
+.note-modal-summary {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 1.05rem;
+    color: var(--navy);
+}
+
+.note-modal-detail {
+    font-size: 0.96rem;
+}
+
+.note-modal-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1.3rem;
+    padding-top: 1.1rem;
+    border-top: 1px solid var(--border-soft);
+}
+
+.note-modal-tags span {
+    font-family: var(--font-sans);
+    font-size: 0.72rem;
+    color: var(--navy);
+    background: var(--ivory-2);
+    border: 1px solid var(--border);
+    padding: 0.2rem 0.55rem;
+    border-radius: 20px;
+}
+
 /* ================================================================
    PUBLICATIONS — scholarly catalogue
    ================================================================ */
 
 .pub-year {
-    font-family: var(--font-sans);
-    font-style: normal;
-    font-weight: 700;
-    font-size: 1.25rem;
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 600;
+    font-size: 1.4rem;
     color: var(--navy);
     margin: 2.2rem 0 0.9rem;
 }
@@ -609,7 +1100,7 @@ a:hover {
     background: var(--navy);
     color: var(--ivory);
     margin: -1px 0 -1px;
-    padding: 4rem 0 5rem;
+    padding: 4.5rem 0 5.5rem;
     position: relative;
     overflow: hidden;
 }
@@ -618,8 +1109,10 @@ a:hover {
     content: "";
     position: absolute;
     inset: 0;
-    background-image: radial-gradient(circle at 12% 18%, rgba(201, 168, 112, 0.08), transparent 40%),
-        radial-gradient(circle at 88% 82%, rgba(111, 42, 58, 0.18), transparent 45%);
+    background-image: radial-gradient(circle at 12% 18%, rgba(201, 168, 112, 0.1), transparent 40%),
+        radial-gradient(circle at 88% 82%, rgba(111, 42, 58, 0.22), transparent 45%),
+        radial-gradient(circle, rgba(255, 255, 255, 0.35) 0.5px, transparent 0.5px);
+    background-size: auto, auto, 26px 26px;
     pointer-events: none;
 }
 
@@ -634,8 +1127,8 @@ a:hover {
 }
 
 .writing-page p {
-    color: rgba(255, 255, 255, 0.72);
-    font-size: 0.94rem;
+    color: rgba(255, 255, 255, 0.74);
+    font-size: 0.96rem;
 }
 
 .writing-page .rule {
@@ -653,31 +1146,32 @@ a:hover {
 .book-plate .kind {
     font-family: var(--font-sans);
     font-size: 0.78rem;
-    letter-spacing: 0.03em;
-    text-transform: none;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
     color: var(--gold-bright);
 }
 
 .book-plate h2 {
-    font-size: clamp(1.9rem, 4vw, 2.6rem);
-    font-style: normal;
-    font-weight: 700;
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: clamp(2.4rem, 6vw, 3.6rem);
+    font-weight: 500;
     color: var(--ivory);
-    margin: 0.5rem 0 1.1rem;
+    margin: 0.6rem 0 1.2rem;
+    line-height: 1.05;
 }
 
 .book-plate .poem-count {
-    font-family: var(--font-sans);
-    font-size: 0.84rem;
-    letter-spacing: 0;
-    color: rgba(255, 255, 255, 0.55);
-    margin-bottom: 1.4rem;
+    font-family: var(--font-hand);
+    font-size: 1.3rem;
+    color: rgba(255, 255, 255, 0.6);
+    margin-bottom: 1.6rem;
 }
 
 .book-tagline {
-    font-family: var(--font-sans);
-    font-style: normal;
-    font-size: 1.05rem;
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 1.15rem;
     color: var(--ivory);
     border-left: 2px solid var(--burgundy);
     padding-left: 1.2rem;
@@ -701,7 +1195,7 @@ a:hover {
 }
 
 .writing-page .secondary-btn {
-    border-color: rgba(248, 244, 234, 0.4);
+    border-color: rgba(250, 247, 240, 0.4);
     color: var(--ivory) !important;
 }
 
@@ -709,13 +1203,13 @@ a:hover {
     position: relative;
     z-index: 1;
     max-width: 560px;
-    margin: 0 auto;
-    font-family: var(--font-sans);
-    font-size: 0.86rem;
-    line-height: 1.8;
-    color: rgba(255, 255, 255, 0.55);
+    margin: 2.2rem auto 0;
+    font-family: var(--font-hand);
+    font-size: 1.25rem;
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.62);
     text-align: center;
-    font-style: normal;
+    transform: rotate(-0.6deg);
 }
 
 /* ================================================================
@@ -734,7 +1228,7 @@ a:hover {
 }
 
 .about-copy p {
-    font-size: 0.96rem;
+    font-size: 0.98rem;
     max-width: 560px;
 }
 
@@ -765,7 +1259,7 @@ a:hover {
 }
 
 /* ================================================================
-   JOURNEY — timeline on About
+   JOURNEY — a clickable timeline on About
    ================================================================ */
 
 .journey {
@@ -775,9 +1269,17 @@ a:hover {
 }
 
 .journey-title {
-    font-size: clamp(1.3rem, 2.4vw, 1.6rem);
-    font-weight: 700;
-    margin-bottom: 2rem;
+    font-size: clamp(1.4rem, 2.6vw, 1.8rem);
+    font-weight: 600;
+    margin-bottom: 0.6rem;
+}
+
+.journey-intro {
+    font-family: var(--font-hand);
+    font-size: 1.15rem;
+    color: var(--ink-muted);
+    margin-bottom: 1.8rem;
+    transform: rotate(-0.6deg);
 }
 
 .timeline {
@@ -788,19 +1290,29 @@ a:hover {
 }
 
 .timeline-entry {
-    display: grid;
-    grid-template-columns: 130px 1fr;
-    gap: 0.5rem 1.5rem;
-    padding: 1.1rem 0;
     border-bottom: 1px solid var(--border-soft);
-}
-
-.timeline-entry:first-child {
-    padding-top: 0;
 }
 
 .timeline-entry:last-child {
     border-bottom: none;
+}
+
+.timeline-toggle {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 130px 1fr 24px;
+    align-items: start;
+    gap: 0.5rem 1.5rem;
+    padding: 1.1rem 0;
+    background: none;
+    border: none;
+    text-align: left;
+    cursor: pointer;
+    font-family: var(--font-sans);
+}
+
+.timeline-entry:first-child .timeline-toggle {
+    padding-top: 0;
 }
 
 .timeline-year {
@@ -820,16 +1332,77 @@ a:hover {
 }
 
 .timeline-heading {
-    font-size: 0.98rem;
-    font-weight: 700;
+    font-family: var(--font-display);
+    font-size: 1.05rem;
+    font-weight: 600;
     color: var(--ink);
-    margin-bottom: 0.3rem;
+    margin: 0;
+}
+
+.timeline-toggle-icon {
+    font-family: var(--font-sans);
+    font-size: 1.1rem;
+    color: var(--ink-muted);
+    text-align: right;
+    transition: transform 0.25s ease;
+}
+
+.timeline-toggle[aria-expanded="true"] .timeline-toggle-icon {
+    transform: rotate(45deg);
+    color: var(--gold);
+}
+
+.timeline-detail {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.3s ease;
+}
+
+.timeline-detail-inner {
+    overflow: hidden;
+}
+
+.timeline-entry.is-open .timeline-detail {
+    grid-template-rows: 1fr;
 }
 
 .timeline-text {
-    font-size: 0.9rem;
+    font-size: 0.92rem;
     color: var(--ink-muted);
-    margin: 0;
+    margin: 0 0 1.1rem;
+    padding-left: calc(130px + 1.5rem);
+    max-width: 600px;
+}
+
+/* ================================================================
+   Easter eggs
+   ================================================================ */
+
+.easter-egg {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    font-family: var(--font-sans);
+    color: var(--gold);
+    font-size: 0.95rem;
+}
+
+.easter-egg:hover {
+    color: var(--navy);
+}
+
+.easter-note {
+    display: none;
+    font-family: var(--font-hand);
+    font-size: 1.15rem;
+    color: var(--ink-muted);
+    margin-top: 0.5rem;
+    transform: rotate(-1deg);
+}
+
+.easter-note.is-open {
+    display: block;
 }
 
 /* ================================================================
@@ -892,7 +1465,11 @@ div.lazy {
         margin-bottom: 1rem;
     }
 
-    .titlepage .subtitle {
+    .hero-name-line.is-accent {
+        margin-left: 0;
+    }
+
+    .hero-lede {
         margin-left: auto;
         margin-right: auto;
     }
@@ -939,12 +1516,41 @@ div.lazy {
         gap: 0.5rem;
     }
 
+    .entry-num {
+        display: flex;
+        align-items: baseline;
+        gap: 0.5rem;
+    }
+
+    .entry-num .entry-num-figure {
+        margin-top: 0;
+    }
+
     .about-facts {
         grid-template-columns: 1fr;
     }
 
-    .timeline-entry {
+    .timeline-toggle {
+        position: relative;
         grid-template-columns: 1fr;
-        gap: 0.3rem;
+        padding-right: 1.8rem;
+    }
+
+    .timeline-toggle-icon {
+        position: absolute;
+        top: 1.1rem;
+        right: 0;
+    }
+
+    .timeline-text {
+        padding-left: 0;
+    }
+
+    .constellation {
+        aspect-ratio: 1 / 1.15;
+    }
+
+    .node-label {
+        font-size: 0.7rem;
     }
 }

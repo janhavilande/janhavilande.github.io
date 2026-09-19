@@ -6,14 +6,12 @@ description: "About Janhavi Lande — Engineering Physics, AI research, and poet
 ---
 
 <div class="page-shell">
-    <p class="page-mark">A Short Introduction</p>
+    <p class="page-mark"><span aria-hidden="true">&#10022;</span> A Short Introduction</p>
     <h1 class="page-title">About</h1>
     <hr class="rule">
 
-    <div class="about-grid">
+    <div class="about-grid reveal">
         <figure class="portrait-card">
-            <span class="portrait-corner tl" aria-hidden="true"></span>
-            <span class="portrait-corner br" aria-hidden="true"></span>
             <div class="portrait-photo">
                 <img src="{{ site.data.profile.portrait_url | relative_url }}" alt="Janhavi Lande" />
             </div>
@@ -21,7 +19,7 @@ description: "About Janhavi Lande — Engineering Physics, AI research, and poet
         </figure>
 
         <div class="about-copy">
-            <p>I like learning across disciplines, and connecting ideas that normally live far apart. That's the honest throughline, more than any single job title — physics taught me to ask how something works underneath; machine learning gave me tools to go looking for the answer in data; and poetry is where I put whatever the first two couldn't quite hold.</p>
+            <p>I like learning across disciplines, and connecting ideas that normally live far apart. That's the honest throughline, more than any single job title — physics taught me to ask how something works underneath; machine learning gave me tools to go looking for the answer in data; and poetry is where I put whatever the first two couldn't quite hold. <span class="margin-note">physics brain, mostly still on</span></p>
 
             <p>I studied Engineering Physics at the Indian Institute of Technology Guwahati, which is a strange enough degree that it forces you to sit with both the precision of physics and the mess of everything it touches. From there I moved toward AI and data science — not by abandoning that curiosity, but by pointing it at new kinds of problems: how a model can be pushed to serve a population it was quietly underserving, how a paper's claims hold up once you actually try to reproduce them, how millions of scattered opinions on a pandemic add up to something you can study.</p>
 
@@ -55,20 +53,30 @@ description: "About Janhavi Lande — Engineering Physics, AI research, and poet
     </div>
 
     {% if site.data.timeline %}
-    <div class="journey">
-        <p class="page-mark">The Journey</p>
+    <div class="journey reveal" id="journey">
+        <p class="page-mark"><span aria-hidden="true">&#10022;</span> The Journey</p>
         <h2 class="journey-title">A rough timeline</h2>
+        <p class="journey-intro">— click a year, most of them expand into something longer</p>
 
         <ol class="timeline">
             {% for entry in site.data.timeline %}
             <li class="timeline-entry">
-                <div class="timeline-year">
-                    {{ entry.year }}
-                    {% if entry.meta %}<span class="timeline-meta">{{ entry.meta }}</span>{% endif %}
-                </div>
-                <div class="timeline-body">
-                    <h3 class="timeline-heading">{{ entry.title }}</h3>
-                    <p class="timeline-text">{{ entry.text }}</p>
+                <button type="button" class="timeline-toggle" aria-expanded="false" aria-controls="timeline-detail-{{ forloop.index }}">
+                    <span class="timeline-year">
+                        {{ entry.year }}
+                        {% if entry.meta %}<span class="timeline-meta">{{ entry.meta }}</span>{% endif %}
+                    </span>
+                    <span class="timeline-heading">{{ entry.title }}</span>
+                    <span class="timeline-toggle-icon" aria-hidden="true">+</span>
+                </button>
+                <div class="timeline-detail" id="timeline-detail-{{ forloop.index }}">
+                    <div class="timeline-detail-inner">
+                        <p class="timeline-text">{{ entry.text }}</p>
+                        {% if entry.egg %}
+                        <button type="button" class="easter-egg" aria-expanded="false" aria-controls="timeline-egg-{{ forloop.index }}" style="padding-left: calc(130px + 1.5rem);">&#10022; a small aside</button>
+                        <p class="easter-note" id="timeline-egg-{{ forloop.index }}" style="padding-left: calc(130px + 1.5rem);">{{ entry.egg }}</p>
+                        {% endif %}
+                    </div>
                 </div>
             </li>
             {% endfor %}
