@@ -4,7 +4,7 @@
    Janhavi Lande — a personal research notebook, not a portfolio.
    Deep ink navy + warm parchment, with muted gold, dusty blue,
    restrained burgundy and forest green held as rare accents.
-   Fraunces for display type (editorial, slightly literary), DM Sans
+   Newsreader for display type (editorial, quieter than a display face), DM Sans
    for reading and UI, Caveat for the handwritten margin notes.
    =================================================================== */
 
@@ -28,7 +28,7 @@
     --shadow: 0 10px 24px rgba(20, 26, 41, 0.08);
     --shadow-lift: 0 18px 36px rgba(20, 26, 41, 0.14);
 
-    --font-display: "Fraunces", "Iowan Old Style", serif;
+    --font-display: "Newsreader", "Iowan Old Style", serif;
     --font-sans: "DM Sans", "Inter", -apple-system, sans-serif;
     --font-hand: "Caveat", cursive;
     --font-mono: var(--font-sans);
@@ -1173,6 +1173,21 @@ a:hover {
     font-weight: 600;
     color: var(--ink);
     margin-bottom: 0.3rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.timeline-icon {
+    display: inline-flex;
+    color: var(--gold);
+    flex-shrink: 0;
+}
+
+.timeline-icon svg {
+    width: 22px;
+    height: 22px;
+    display: block;
 }
 
 .timeline-text {

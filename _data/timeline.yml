@@ -1,18 +1,22 @@
 # The Journey — a year-by-year timeline, rendered on the About page.
+# icon is optional and one of: atom, spark, stars, graph, building, bigben
 - year: "2019"
   title: "Started at IIT Guwahati"
+  icon: "atom"
   text: >-
     Began an Engineering Physics degree at the Indian Institute of Technology Guwahati.
 
 - year: "2021"
   meta: "Jun – Jul · 2 mos"
   title: "Microsoft Engage Mentee, Microsoft"
+  icon: "spark"
   text: >-
     Spent two months as a mentee in the Microsoft Engage program.
 
 - year: "2021"
   meta: "Dec"
   title: "Began research with Prof. Rohitash Chandra"
+  icon: "stars"
   text: >-
     Started working with Prof. Rohitash Chandra during the pandemic to do machine learning
     research — the thing that actually got me interested in research. Continued for two years,
@@ -20,11 +24,13 @@
 
 - year: "2022"
   title: "GitHub Externship at TigerGraph"
+  icon: "graph"
   text: >-
     Worked with TigerGraph as part of the GitHub Externship program.
 
 - year: "2023"
   title: "Joined American Express"
+  icon: "building"
   text: >-
     Started at American Express, moving through three roles spanning product and data science.
     Began work on a patent during this time.
@@ -33,3 +39,7 @@
   title: "Senior Analyst, American Express"
   text: >-
     Promoted to Senior Analyst at American Express.
+
+- year: "2026"
+  title: "LogML, Imperial College London"
+  icon: "bigben"
