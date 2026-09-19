@@ -1,34 +1,45 @@
 @charset "utf-8";
 
 /* ===================================================================
-   Ivied Walls — a personal site styled like an old, leather-bound book.
-   Dark ivy "room" as the exterior; warm aged-parchment "leaves" hold
-   the actual content, with gilt double-rules, chapter numerals, drop
-   caps and corner fleurons.
+   Ivied Walls — a personal site styled like a classic library reading
+   room. Deep navy walls as the exterior; crisp white-and-beige "leaves"
+   hold the actual content, with brass hardware accents (rules, corner
+   trim, drop caps) standing in for gilt. The ivy green lives only on
+   the Ivied Walls spine — everything else is blue, white and beige.
    =================================================================== */
 
 :root {
-    --bg: #17100a;
-    --bg-deep: #0b0704;
+    --bg: #1c3a5e;
+    --bg-deep: #0b1c2e;
+
+    /* the book's own green — reserved for the Ivied Walls spine only */
     --ivy: #3f7249;
     --ivy-dark: #1b3322;
     --ivy-light: #8fc189;
-    --gold: #b8863c;
-    --gold-bright: #e2bd72;
-    --gold-soft: rgba(184, 134, 60, 0.45);
-    --gold-line: rgba(184, 134, 60, 0.5);
 
-    --parchment: #ecdfbd;
-    --parchment-2: #ddc793;
-    --ink: #241a0d;
-    --ink-muted: #5c4a2c;
+    /* library blue — the site's real ink/accent color */
+    --navy: #2f5c8a;
+    --navy-dark: #16324f;
+    --navy-light: #7ba4d1;
 
-    --text: #eee6d3;
-    --muted: #bcb298;
-    --line: rgba(184, 134, 60, 0.2);
+    /* muted brass — hardware trim only (rules, drop caps, corner marks) */
+    --gold: #a68a5b;
+    --gold-bright: #c9ad78;
+    --gold-soft: rgba(166, 138, 91, 0.42);
+    --gold-line: rgba(166, 138, 91, 0.45);
 
-    --shadow-deep: 0 32px 64px rgba(0, 0, 0, 0.6);
-    --shadow-page: 0 20px 44px rgba(0, 0, 0, 0.45);
+    /* the "leaves": white fading to soft beige */
+    --parchment: #faf7f0;
+    --parchment-2: #e6dcc3;
+    --ink: #1c2b3d;
+    --ink-muted: #55677c;
+
+    --text: #eef1f6;
+    --muted: #a9bacd;
+    --line: rgba(166, 138, 91, 0.2);
+
+    --shadow-deep: 0 32px 64px rgba(6, 16, 28, 0.55);
+    --shadow-page: 0 20px 44px rgba(12, 26, 43, 0.28);
 
     /* brand-true colors for the bookshelf spines */
     --scholar-blue: #4285f4;
@@ -46,15 +57,15 @@ body {
     font-weight: 400;
     padding-top: 5rem;
     background:
-        radial-gradient(circle at 15% 10%, rgba(63, 114, 73, 0.26), transparent 32%),
-        radial-gradient(circle at 85% 90%, rgba(63, 114, 73, 0.2), transparent 34%),
-        linear-gradient(160deg, #1d140b 0%, #130d07 55%, var(--bg-deep) 100%);
+        radial-gradient(circle at 15% 10%, rgba(123, 164, 209, 0.16), transparent 32%),
+        radial-gradient(circle at 85% 90%, rgba(123, 164, 209, 0.13), transparent 34%),
+        linear-gradient(160deg, #21456c 0%, #163350 55%, var(--bg-deep) 100%);
     color: var(--text);
     position: relative;
     overflow-x: hidden;
 }
 
-/* faint vine-like glow + leather-grain hatch + vignette on the dark exterior */
+/* a warm brass reading-lamp glow in the corners of the navy room, plus a soft vignette */
 body::before {
     content: "";
     position: fixed;
@@ -63,8 +74,8 @@ body::before {
     pointer-events: none;
     opacity: 0.55;
     background-image:
-        radial-gradient(circle at 8% 92%, rgba(143, 193, 137, 0.12) 0, transparent 45%),
-        radial-gradient(circle at 96% 6%, rgba(143, 193, 137, 0.1) 0, transparent 40%);
+        radial-gradient(circle at 8% 92%, rgba(201, 173, 120, 0.1) 0, transparent 45%),
+        radial-gradient(circle at 96% 6%, rgba(201, 173, 120, 0.08) 0, transparent 40%);
 }
 
 body::after {
@@ -73,11 +84,8 @@ body::after {
     inset: 0;
     z-index: 0;
     pointer-events: none;
-    opacity: 0.65;
-    background-image:
-        repeating-linear-gradient(115deg, rgba(0, 0, 0, 0.14) 0 2px, transparent 2px 5px),
-        radial-gradient(ellipse at center, transparent 32%, rgba(0, 0, 0, 0.62) 100%);
-    mix-blend-mode: multiply;
+    opacity: 0.6;
+    background-image: radial-gradient(ellipse at center, transparent 38%, rgba(4, 11, 20, 0.55) 100%);
 }
 
 body > * {
@@ -105,13 +113,13 @@ a {
 }
 
 a:hover {
-    color: var(--ivy-light);
+    color: var(--navy-light);
 }
 
 /* ---------------- Navbar: a spine/ribbon along the top ---------------- */
 
 .navbar {
-    background: linear-gradient(180deg, rgba(11, 7, 4, 0.94), rgba(20, 14, 8, 0.9)) !important;
+    background: linear-gradient(180deg, rgba(11, 24, 39, 0.95), rgba(20, 41, 64, 0.9)) !important;
     border-bottom: 1px solid var(--gold-line);
     backdrop-filter: blur(14px);
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
@@ -161,13 +169,13 @@ a:hover {
 .titlepage {
     background: linear-gradient(180deg, var(--parchment), var(--parchment-2));
     color: var(--ink);
-    border: 1px solid rgba(36, 26, 13, 0.22);
-    border-top: 4px solid var(--gold);
+    border: 1px solid rgba(22, 50, 79, 0.16);
+    border-top: 4px solid var(--navy-dark);
     border-radius: 0.3rem;
     box-shadow:
         var(--shadow-page),
         inset 0 0 0 6px var(--parchment),
-        inset 0 0 0 7px rgba(184, 134, 60, 0.55);
+        inset 0 0 0 7px rgba(22, 50, 79, 0.22);
     padding: 2.8rem clamp(1.5rem, 5vw, 3.8rem);
     margin-bottom: 2.2rem;
     position: relative;
@@ -210,7 +218,7 @@ a:hover {
 .page-leaf a,
 .book-page-container a,
 .titlepage a {
-    color: var(--ivy-dark);
+    color: var(--navy-dark);
     text-decoration: underline;
     text-decoration-color: var(--gold-soft);
     text-decoration-thickness: 1.5px;
@@ -219,14 +227,14 @@ a:hover {
 .page-leaf a:hover,
 .book-page-container a:hover,
 .titlepage a:hover {
-    color: var(--ivy);
+    color: var(--navy);
 }
 
 .chapter-mark {
     font-family: "Cormorant Garamond", serif;
     font-style: italic;
     font-weight: 600;
-    color: var(--ivy-dark) !important;
+    color: var(--navy-dark) !important;
     letter-spacing: 0.08em;
     text-transform: uppercase;
     font-size: 0.92rem;
@@ -281,7 +289,7 @@ a:hover {
 
 .titlepage .eyebrow {
     display: inline-block;
-    color: var(--ivy-dark);
+    color: var(--navy-dark);
     font-family: "Cormorant Garamond", serif;
     font-style: italic;
     font-weight: 600;
@@ -326,16 +334,16 @@ a:hover {
 }
 
 .primary-btn {
-    background: linear-gradient(135deg, var(--ivy), var(--ivy-dark));
-    box-shadow: 0 12px 26px rgba(27, 51, 34, 0.4), inset 0 0 0 1px rgba(255, 255, 255, 0.16);
+    background: linear-gradient(135deg, var(--navy), var(--navy-dark));
+    box-shadow: 0 12px 26px rgba(16, 33, 53, 0.4), inset 0 0 0 1px rgba(255, 255, 255, 0.16);
     color: var(--parchment) !important;
-    border: 2px solid var(--gold-soft);
+    border: 2px solid rgba(123, 164, 209, 0.5);
 }
 
 .secondary-btn {
-    border: 2px solid var(--ivy-dark);
-    background: rgba(36, 26, 13, 0.05);
-    color: var(--ivy-dark) !important;
+    border: 2px solid var(--navy-dark);
+    background: rgba(22, 50, 79, 0.05);
+    color: var(--navy-dark) !important;
 }
 
 .primary-btn:hover,
@@ -352,7 +360,7 @@ a:hover {
 }
 
 .social-row a {
-    color: var(--ivy-dark) !important;
+    color: var(--navy-dark) !important;
     text-decoration: none !important;
 }
 
@@ -376,7 +384,7 @@ a:hover {
     font-style: italic;
     font-weight: 600;
     letter-spacing: 0.05em;
-    color: var(--ivy-dark);
+    color: var(--navy-dark);
     font-size: 0.95rem;
 }
 
@@ -385,7 +393,7 @@ a:hover {
     width: min(100%, 300px);
     aspect-ratio: 1;
     border-radius: 50%;
-    background: var(--ivy-dark);
+    background: var(--navy-dark);
     padding: 0.6rem;
     box-shadow:
         0 0 0 3px var(--parchment),
@@ -485,7 +493,7 @@ a:hover {
 .shelf-ledge {
     height: 10px;
     margin-top: 2px;
-    background: linear-gradient(180deg, #7a5530, #3a2716);
+    background: linear-gradient(180deg, #2c4a6e, #142236);
     border-radius: 2px;
     box-shadow: 0 8px 12px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.15);
 }
@@ -509,7 +517,7 @@ a:hover {
     font-style: italic;
     font-weight: 600;
     font-size: 1.35rem;
-    color: var(--ivy-dark);
+    color: var(--navy-dark);
     border-left: 4px solid var(--gold);
     padding-left: 1.2rem;
     margin: 1rem 0 1.4rem;
@@ -544,8 +552,8 @@ a:hover {
     font-weight: 600;
     font-size: 0.8rem;
     letter-spacing: 0.05em;
-    color: var(--ivy-dark) !important;
-    background: rgba(184, 134, 60, 0.1);
+    color: var(--navy-dark) !important;
+    background: rgba(166, 138, 91, 0.1);
     margin: 0;
 }
 
@@ -580,7 +588,7 @@ a:hover {
     font-family: "Fraunces", serif;
     font-weight: 800;
     font-size: 1.15rem;
-    color: var(--ivy-dark);
+    color: var(--navy-dark);
     margin-bottom: 0.2rem;
 }
 
@@ -609,7 +617,7 @@ a:hover {
 }
 
 .list-footer-link a {
-    color: var(--ivy-dark);
+    color: var(--navy-dark);
     font-weight: 700;
     text-decoration: none;
 }
@@ -617,19 +625,19 @@ a:hover {
 /* Publications list items (used on homepage + /publications) — an inlaid panel, not a flat white card */
 .my-0.bg-white,
 .bg-white.shadow-sm.rounded-xl {
-    background: rgba(221, 199, 147, 0.28) !important;
-    border: 2px solid rgba(44, 36, 20, 0.2) !important;
+    background: rgba(230, 220, 195, 0.35) !important;
+    border: 2px solid rgba(22, 50, 79, 0.15) !important;
     border-top: 3px solid var(--gold-soft) !important;
     border-radius: 0.3rem !important;
-    box-shadow: inset 0 2px 10px rgba(44, 36, 20, 0.1) !important;
+    box-shadow: inset 0 2px 10px rgba(22, 50, 79, 0.08) !important;
 }
 
 .border-gray {
-    border-color: rgba(44, 36, 20, 0.22) !important;
+    border-color: rgba(22, 50, 79, 0.18) !important;
 }
 
 .abstract-links a {
-    color: var(--ivy-dark);
+    color: var(--navy-dark);
 }
 
 .page-leaf .text-muted,
@@ -648,7 +656,7 @@ a:hover {
 }
 
 #navbar-year .nav-link:hover {
-    color: var(--ivy-dark) !important;
+    color: var(--navy-dark) !important;
 }
 
 /* ---------------- Footer: the closing page ---------------- */
