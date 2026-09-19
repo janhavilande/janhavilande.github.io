@@ -53,4 +53,26 @@ description: "About Janhavi Lande — Engineering Physics, AI research, and poet
             </div>
         </div>
     </div>
+
+    {% if site.data.timeline %}
+    <div class="journey">
+        <p class="page-mark">The Journey</p>
+        <h2 class="journey-title">A rough timeline</h2>
+
+        <ol class="timeline">
+            {% for entry in site.data.timeline %}
+            <li class="timeline-entry">
+                <div class="timeline-year">
+                    {{ entry.year }}
+                    {% if entry.meta %}<span class="timeline-meta">{{ entry.meta }}</span>{% endif %}
+                </div>
+                <div class="timeline-body">
+                    <h3 class="timeline-heading">{{ entry.title }}</h3>
+                    <p class="timeline-text">{{ entry.text }}</p>
+                </div>
+            </li>
+            {% endfor %}
+        </ol>
+    </div>
+    {% endif %}
 </div>

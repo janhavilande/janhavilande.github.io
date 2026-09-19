@@ -1,17 +1,4 @@
 # Research notebook entries — homepage teaser + the /research page.
-- title: "Text-Guided Generative Models for 3D Materials"
-  tagline: "AI × Materials Science × Geometric Deep Learning"
-  summary: >-
-    Reproducing TGDMat — a text-guided generative model for crystalline materials, presented at
-    ICLR 2025 — as a clean, production-quality notebook rather than a research-code checkout.
-  detail: >-
-    Getting the paper to actually run meant auditing the original repository line by line: tracing
-    how the diffusion process was implemented, finding where the published code diverged from the
-    paper, and fixing real bugs before the results could be trusted. The result lives as a
-    self-contained, documented Colab notebook — built so someone without the authors' exact
-    environment can still reproduce it.
-  tags: [Geometric Deep Learning, Generative Models, Materials Science]
-
 - title: "Custom Loss Functions for Credit Risk"
   tagline: "AI × Financial ML × Applied Research"
   summary: >-
