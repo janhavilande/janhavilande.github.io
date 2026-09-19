@@ -473,152 +473,6 @@ a:hover {
 }
 
 /* ================================================================
-   CONSTELLATION — "Follow My Curiosity"
-   ================================================================ */
-
-.curiosity-section {
-    padding: 1rem 0 4rem;
-}
-
-.curiosity-intro {
-    max-width: 560px;
-    margin: 0 auto 2.4rem;
-    text-align: center;
-}
-
-.curiosity-intro .page-mark {
-    justify-content: center;
-}
-
-.curiosity-intro h2 {
-    font-size: clamp(1.6rem, 3vw, 2.1rem);
-    margin-bottom: 0.7rem;
-}
-
-.curiosity-intro p {
-    font-size: 0.98rem;
-}
-
-.constellation {
-    position: relative;
-    width: min(100%, 640px);
-    aspect-ratio: 1 / 0.82;
-    margin: 0 auto;
-}
-
-.constellation-lines {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    overflow: visible;
-}
-
-.constellation-lines line {
-    stroke: var(--border);
-    stroke-width: 0.45;
-    transition: stroke 0.3s ease, stroke-width 0.3s ease, opacity 0.3s ease;
-}
-
-.constellation-lines line.is-active {
-    stroke: var(--gold);
-    stroke-width: 0.7;
-}
-
-.constellation.has-focus .constellation-lines line:not(.is-active) {
-    opacity: 0.35;
-}
-
-.constellation-node {
-    position: absolute;
-    top: var(--y);
-    left: var(--x);
-    transform: translate(-50%, -50%);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.4rem;
-    background: none;
-    border: none;
-    padding: 0.3rem;
-    cursor: pointer;
-    font-family: var(--font-sans);
-    z-index: 2;
-}
-
-.node-dot {
-    width: 13px;
-    height: 13px;
-    border-radius: 50%;
-    background: var(--paper);
-    border: 2px solid var(--navy);
-    transition: transform 0.25s ease, background 0.25s ease, border-color 0.25s ease;
-}
-
-.constellation-node:hover .node-dot,
-.constellation-node:focus-visible .node-dot,
-.constellation-node.is-active .node-dot {
-    background: var(--gold);
-    border-color: var(--gold);
-    transform: scale(1.35);
-}
-
-.node-label {
-    font-size: 0.78rem;
-    font-weight: 600;
-    letter-spacing: 0.01em;
-    color: var(--navy);
-    background: rgba(250, 247, 240, 0.88);
-    padding: 0.05rem 0.4rem;
-    border-radius: 3px;
-    white-space: nowrap;
-}
-
-.constellation.has-focus .constellation-node:not(:hover):not(:focus-visible):not(.is-active) .node-label {
-    color: var(--ink-muted);
-}
-
-.constellation-caption {
-    max-width: 620px;
-    margin: 2rem auto 0;
-    min-height: 4.6rem;
-    padding: 1.1rem 1.4rem;
-    background: var(--paper);
-    border: 1px solid var(--border);
-    border-left: 3px solid var(--gold);
-    border-radius: 2px;
-    box-shadow: var(--shadow);
-    text-align: left;
-}
-
-.constellation-caption-eyebrow {
-    display: block;
-    font-family: var(--font-sans);
-    font-size: 0.72rem;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 0.35rem;
-}
-
-.constellation-caption-text {
-    font-family: var(--font-display);
-    font-style: italic;
-    font-size: 1.08rem;
-    color: var(--ink);
-    margin: 0;
-    line-height: 1.55;
-}
-
-.constellation-caption-link {
-    display: inline-block;
-    margin-top: 0.5rem;
-    font-family: var(--font-sans);
-    font-weight: 600;
-    font-size: 0.84rem;
-}
-
-/* ================================================================
    Scroll storytelling — gentle, safe reveal (visible by default;
    JS only arms the hidden state, and always has a timeout fallback,
    so content can never get permanently stuck invisible).
@@ -1274,14 +1128,6 @@ a:hover {
     margin-bottom: 0.6rem;
 }
 
-.journey-intro {
-    font-family: var(--font-hand);
-    font-size: 1.15rem;
-    color: var(--ink-muted);
-    margin-bottom: 1.8rem;
-    transform: rotate(-0.6deg);
-}
-
 .timeline {
     list-style: none;
     margin: 0;
@@ -1290,29 +1136,19 @@ a:hover {
 }
 
 .timeline-entry {
+    display: grid;
+    grid-template-columns: 130px 1fr;
+    gap: 0.5rem 1.5rem;
+    padding: 1.1rem 0;
     border-bottom: 1px solid var(--border-soft);
+}
+
+.timeline-entry:first-child {
+    padding-top: 0;
 }
 
 .timeline-entry:last-child {
     border-bottom: none;
-}
-
-.timeline-toggle {
-    width: 100%;
-    display: grid;
-    grid-template-columns: 130px 1fr 24px;
-    align-items: start;
-    gap: 0.5rem 1.5rem;
-    padding: 1.1rem 0;
-    background: none;
-    border: none;
-    text-align: left;
-    cursor: pointer;
-    font-family: var(--font-sans);
-}
-
-.timeline-entry:first-child .timeline-toggle {
-    padding-top: 0;
 }
 
 .timeline-year {
@@ -1336,42 +1172,13 @@ a:hover {
     font-size: 1.05rem;
     font-weight: 600;
     color: var(--ink);
-    margin: 0;
-}
-
-.timeline-toggle-icon {
-    font-family: var(--font-sans);
-    font-size: 1.1rem;
-    color: var(--ink-muted);
-    text-align: right;
-    transition: transform 0.25s ease;
-}
-
-.timeline-toggle[aria-expanded="true"] .timeline-toggle-icon {
-    transform: rotate(45deg);
-    color: var(--gold);
-}
-
-.timeline-detail {
-    display: grid;
-    grid-template-rows: 0fr;
-    transition: grid-template-rows 0.3s ease;
-}
-
-.timeline-detail-inner {
-    overflow: hidden;
-}
-
-.timeline-entry.is-open .timeline-detail {
-    grid-template-rows: 1fr;
+    margin-bottom: 0.3rem;
 }
 
 .timeline-text {
     font-size: 0.92rem;
     color: var(--ink-muted);
-    margin: 0 0 1.1rem;
-    padding-left: calc(130px + 1.5rem);
-    max-width: 600px;
+    margin: 0;
 }
 
 /* ================================================================
@@ -1530,27 +1337,8 @@ div.lazy {
         grid-template-columns: 1fr;
     }
 
-    .timeline-toggle {
-        position: relative;
+    .timeline-entry {
         grid-template-columns: 1fr;
-        padding-right: 1.8rem;
-    }
-
-    .timeline-toggle-icon {
-        position: absolute;
-        top: 1.1rem;
-        right: 0;
-    }
-
-    .timeline-text {
-        padding-left: 0;
-    }
-
-    .constellation {
-        aspect-ratio: 1 / 1.15;
-    }
-
-    .node-label {
-        font-size: 0.7rem;
+        gap: 0.3rem;
     }
 }

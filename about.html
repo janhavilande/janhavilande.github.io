@@ -56,27 +56,18 @@ description: "About Janhavi Lande — Engineering Physics, AI research, and poet
     <div class="journey reveal" id="journey">
         <p class="page-mark"><span aria-hidden="true">&#10022;</span> The Journey</p>
         <h2 class="journey-title">A rough timeline</h2>
-        <p class="journey-intro">— click a year, most of them expand into something longer</p>
 
         <ol class="timeline">
             {% for entry in site.data.timeline %}
             <li class="timeline-entry">
-                <button type="button" class="timeline-toggle" aria-expanded="false" aria-controls="timeline-detail-{{ forloop.index }}">
-                    <span class="timeline-year">
-                        {{ entry.year }}
-                        {% if entry.meta %}<span class="timeline-meta">{{ entry.meta }}</span>{% endif %}
-                    </span>
-                    <span class="timeline-heading">{{ entry.title }}</span>
-                    <span class="timeline-toggle-icon" aria-hidden="true">+</span>
-                </button>
-                <div class="timeline-detail" id="timeline-detail-{{ forloop.index }}">
-                    <div class="timeline-detail-inner">
-                        <p class="timeline-text">{{ entry.text }}</p>
-                        {% if entry.egg %}
-                        <button type="button" class="easter-egg" aria-expanded="false" aria-controls="timeline-egg-{{ forloop.index }}" style="padding-left: calc(130px + 1.5rem);">&#10022; a small aside</button>
-                        <p class="easter-note" id="timeline-egg-{{ forloop.index }}" style="padding-left: calc(130px + 1.5rem);">{{ entry.egg }}</p>
-                        {% endif %}
-                    </div>
+                <div class="timeline-year">
+                    {{ entry.year }}
+                    {% if entry.meta %}<span class="timeline-meta">{{ entry.meta }}</span>{% endif %}
+                </div>
+                <div class="timeline-body">
+                    <h3 class="timeline-heading">{{ entry.title }}</h3>
+                    <p class="timeline-text">{{ entry.text }}</p>
+                    {% if entry.egg %}<span class="margin-note margin-note-block">{{ entry.egg }}</span>{% endif %}
                 </div>
             </li>
             {% endfor %}
