@@ -4,100 +4,59 @@ title : Homepage
 navbar_title: Home
 ---
 
-<div class="homepage-shell">
-    <section class="titlepage">
-        <div class="hero-copy">
-            <span class="eyebrow">Engineering Physics &bull; AI &amp; Data Science &bull; Poetry</span>
-            <h1>Janhavi Lande</h1>
-            <p class="subtitle">
-                Being an IIT Guwahati graduate exploring the space where data, machine intelligence, and
-                scientific discovery meet — and the quieter space where a poem gets written.
-            </p>
-            <div class="hero-actions">
-                <a href="#chapter-i" class="primary-btn">Begin reading</a>
-                <a href="mailto:{{ site.data.profile.email | encode_email }}" class="secondary-btn">Get in touch</a>
-            </div>
-            <div class="social-row">
-                {% if site.data.profile.gscholar %}
-                <a href="https://scholar.google.com/citations?user={{ site.data.profile.gscholar }}&hl=en" target="_blank" rel="noopener" title="Google Scholar"><i class="ai ai-google-scholar"></i></a>
-                {% endif %}
-                {% if site.data.profile.github %}
-                <a href="https://github.com/{{ site.data.profile.github }}" target="_blank" rel="noopener" title="GitHub"><i class="fab fa-github"></i></a>
-                {% endif %}
-                {% if site.data.profile.linkedin %}
-                <a href="https://linkedin.com/in/{{ site.data.profile.linkedin }}" target="_blank" rel="noopener" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                {% endif %}
-            </div>
-        </div>
+<section class="titlepage">
+    <canvas id="constellation" aria-hidden="true"></canvas>
 
-        <div class="hero-visual">
-            {% if site.data.profile.portrait_url %}
-            <figure class="portrait-figure">
-                <div class="portrait-wrap">
-                    <img src="{{ site.data.profile.portrait_url | relative_url }}" alt="Janhavi Lande" />
-                </div>
-                <figcaption>Janhavi Lande</figcaption>
-            </figure>
+    <div class="hero-copy reveal">
+        <span class="eyebrow">Engineering Physics &bull; AI &amp; Data Science &bull; Poetry</span>
+        <h1>Janhavi Lande</h1>
+        <p class="subtitle">
+            Exploring the space where data, machine intelligence, and scientific discovery meet —
+            and the quieter space where a poem gets written.
+        </p>
+        <div class="hero-actions">
+            <a href="{{ '/research' | relative_url }}" class="primary-btn">Enter the notebook</a>
+            <a href="{{ '/writing' | relative_url }}" class="secondary-btn">Read the poetry</a>
+        </div>
+        <div class="social-row">
+            {% if site.data.profile.gscholar %}
+            <a href="https://scholar.google.com/citations?user={{ site.data.profile.gscholar }}&hl=en" target="_blank" rel="noopener" title="Google Scholar"><i class="ai ai-google-scholar"></i></a>
             {% endif %}
+            {% if site.data.profile.github %}
+            <a href="https://github.com/{{ site.data.profile.github }}" target="_blank" rel="noopener" title="GitHub"><i class="fab fa-github"></i></a>
+            {% endif %}
+            {% if site.data.profile.linkedin %}
+            <a href="https://linkedin.com/in/{{ site.data.profile.linkedin }}" target="_blank" rel="noopener" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+            {% endif %}
+            <a href="https://substack.com/@pinched" target="_blank" rel="noopener" title="Substack"><i class="fab fa-substack"></i></a>
         </div>
+    </div>
 
-        <div class="bookshelf" aria-label="More reading, off the shelf">
-            <div class="spine-row">
-                <a class="spine spine-ivy" href="{{ '/book' | relative_url }}" title="Ivied Walls — my poetry collection">
-                    <i class="fas fa-leaf spine-icon" aria-hidden="true"></i>
-                    <span>Ivied Walls</span>
-                </a>
-                {% if site.data.profile.gscholar %}
-                <a class="spine spine-scholar" href="https://scholar.google.com/citations?user={{ site.data.profile.gscholar }}&hl=en" target="_blank" rel="noopener" title="My papers on Google Scholar">
-                    <i class="ai ai-google-scholar spine-icon" aria-hidden="true"></i>
-                    <span>Google Scholar</span>
-                </a>
-                {% endif %}
-                <a class="spine spine-substack" href="https://substack.com/@pinched" target="_blank" rel="noopener" title="My writing on Substack">
-                    <i class="fab fa-substack spine-icon" aria-hidden="true"></i>
-                    <span>Substack</span>
-                </a>
+    <div class="hero-visual reveal">
+        {% if site.data.profile.portrait_url %}
+        <figure class="portrait-card">
+            <span class="portrait-corner tl" aria-hidden="true"></span>
+            <span class="portrait-corner br" aria-hidden="true"></span>
+            <div class="portrait-photo">
+                <img src="{{ site.data.profile.portrait_url | relative_url }}" alt="Janhavi Lande" />
             </div>
-            <div class="shelf-ledge" aria-hidden="true"></div>
-        </div>
-    </section>
+            <figcaption class="portrait-caption">J. Lande — b. Guwahati</figcaption>
+        </figure>
+        {% endif %}
+    </div>
+</section>
 
-    <section id="chapter-i" class="page-leaf">
-        <p class="chapter-mark">Chapter I</p>
-        <h2 class="chapter-title">Ivied Walls</h2>
-        <div class="ornament" aria-hidden="true">&#10086;</div>
-
-        {% assign book = site.data.book %}
-        <blockquote class="book-tagline">“{{ book.tagline }}”</blockquote>
-        <p>{{ book.blurb }}</p>
-
-        <div class="book-links">
-            {% for link in book.links limit:1 %}
-            <a class="primary-btn" target="_blank" rel="noopener" href="{{ link.url }}">{{ link.label }}</a>
-            {% endfor %}
-            <a class="secondary-btn" href="{{ '/book' | relative_url }}">Read more about the book</a>
-        </div>
-    </section>
-
-    <section id="chapter-ii" class="page-leaf">
-        <p class="chapter-mark">Chapter II</p>
-        <h2 class="chapter-title">The Journey So Far</h2>
-        <div class="ornament" aria-hidden="true">&#10086;</div>
-
-        <ol class="timeline">
-            {% for entry in site.data.timeline %}
-            <li class="timeline-entry">
-                <span class="timeline-year">{{ entry.year }}</span>
-                <span class="timeline-text">{{ entry.text }}</span>
-            </li>
-            {% endfor %}
-        </ol>
-    </section>
-
-    {% assign pubs = site.publications | sort: "date" | reverse | where: "selected", true %}
-    {% if pubs.size > 0 %}
-    <section id="chapter-iii" class="page-leaf">
-        {% include widgets/publication_card.html publications=pubs chapter="Chapter III" title="Selected Publications" %}
-    </section>
-    {% endif %}
+<div class="teaser-grid">
+    <a class="teaser-card reveal" href="{{ '/research' | relative_url }}">
+        <span class="label">From the notebook</span>
+        <h3>Text-guided models for 3D materials</h3>
+        <p>Reproducing a geometric deep learning paper from ICLR 2025 as a clean, production-quality notebook — auditing the source, and fixing what didn't actually work.</p>
+        <span class="teaser-link">Read the research &rarr;</span>
+    </a>
+    <a class="teaser-card reveal" href="{{ '/writing' | relative_url }}">
+        <span class="label">From the archive</span>
+        <h3>Ivied Walls</h3>
+        <p>A debut poetry collection about weathering, memory, and the ivy that finds its way through the cracks. My first published book.</p>
+        <span class="teaser-link">Open the collection &rarr;</span>
+    </a>
 </div>

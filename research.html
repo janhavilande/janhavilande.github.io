@@ -1,0 +1,38 @@
+---
+layout: default
+title: Research
+navbar_title: Research
+description: "Research notebook — AI, machine learning, and scientific research spanning materials science, financial ML, and NLP."
+---
+
+<div class="page-shell">
+    <p class="page-mark">A Research Notebook</p>
+    <h1 class="page-title reveal">Where the questions live</h1>
+    <p class="page-intro reveal">
+        Not a list of accomplishments so much as a running record — the problems I've been
+        auditing, breaking, and slowly getting to work, across materials science, applied machine
+        learning, and language.
+    </p>
+
+    {% for entry in site.data.research %}
+    <article class="entry reveal">
+        <div class="entry-num">{{ forloop.index | prepend: "00" | slice: -2, 2 }}</div>
+        <div>
+            <p class="entry-tagline">{{ entry.tagline }}</p>
+            <h3>{{ entry.title }}</h3>
+            <p>{{ entry.summary }}</p>
+            <div class="entry-tags">
+                {% for tag in entry.tags %}<span>{{ tag }}</span>{% endfor %}
+            </div>
+            {% if entry.read_more_url %}
+            <a class="entry-read-link" href="{{ entry.read_more_url | relative_url }}">{{ entry.read_more_label | default: "Read more" }} &rarr;</a>
+            {% else %}
+            <button type="button" class="entry-more-toggle" aria-expanded="false">More on this &rarr;</button>
+            <div class="entry-detail">
+                <p>{{ entry.detail }}</p>
+            </div>
+            {% endif %}
+        </div>
+    </article>
+    {% endfor %}
+</div>

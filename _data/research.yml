@@ -1,0 +1,41 @@
+# Research notebook entries — homepage teaser + the /research page.
+- title: "Text-Guided Generative Models for 3D Materials"
+  tagline: "AI × Materials Science × Geometric Deep Learning"
+  summary: >-
+    Reproducing TGDMat — a text-guided generative model for crystalline materials, presented at
+    ICLR 2025 — as a clean, production-quality notebook rather than a research-code checkout.
+  detail: >-
+    Getting the paper to actually run meant auditing the original repository line by line: tracing
+    how the diffusion process was implemented, finding where the published code diverged from the
+    paper, and fixing real bugs before the results could be trusted. The result lives as a
+    self-contained, documented Colab notebook — built so someone without the authors' exact
+    environment can still reproduce it.
+  tags: [Geometric Deep Learning, Generative Models, Materials Science]
+
+- title: "Custom Loss Functions for Credit Risk"
+  tagline: "AI × Financial ML × Applied Research"
+  summary: >-
+    Improving how well a credit-risk model ranks a specific, harder-to-score population segment —
+    without quietly making the model worse for everyone else.
+  detail: >-
+    Standard gradient-boosted models (GBM, LightGBM, XGBoost) optimize a single global objective,
+    which can leave particular segments of a population underserved even when overall performance
+    looks fine. This work designs custom loss functions that push the model to improve its Gini
+    coefficient within that segment specifically, under a hard constraint: aggregate performance
+    cannot degrade in the process.
+  tags: [Applied ML, Credit Scoring, Gradient Boosting]
+
+- title: "Modelling Public Discourse Through a Pandemic"
+  tagline: "AI × NLP × Public Health"
+  summary: >-
+    A series of studies using deep-learning topic modelling and sentiment analysis on large-scale
+    Twitter/X data to trace how public conversation about COVID-19 shifted across its waves.
+  detail: >-
+    Across three connected pieces of work — a topic-modelling study of India's Alpha, Delta and
+    Omicron waves (PLOS One), an analysis of vaccine-related sentiment from development through
+    deployment (Big Data and Cognitive Computing), and an accompanying 8GB open dataset of
+    pandemic-era tweets — the throughline is the same: language online is data, and reading it
+    carefully at scale can say something true about how a crisis was actually experienced.
+  tags: [NLP, Topic Modelling, Public Health]
+  read_more_url: "/publications"
+  read_more_label: "Read the papers"

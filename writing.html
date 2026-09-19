@@ -1,0 +1,38 @@
+---
+layout: default
+title: Writing
+navbar_title: Writing
+container_class: container-fluid p-0
+description: "Ivied Walls — a debut poetry collection by Janhavi Lande."
+---
+
+{% assign book = site.data.book %}
+<div class="writing-page">
+    <div class="container-lg">
+        <p class="page-mark">A Different Kind of Page</p>
+        <h1 class="page-title reveal">Writing</h1>
+        <p class="page-intro reveal" style="color: rgba(248,244,234,0.72);">
+            The same close attention that goes into a dataset, turned toward memory, weathering,
+            and the quieter parts of living.
+        </p>
+        <hr class="rule">
+
+        <div class="book-plate reveal">
+            <span class="kind">{{ book.kind }} &middot; Debut Collection</span>
+            <h2>{{ book.title }}</h2>
+            <p class="poem-count">{{ book.poem_count }} poems</p>
+            <blockquote class="book-tagline">&ldquo;{{ book.tagline }}&rdquo;</blockquote>
+            <p>{{ book.blurb }}</p>
+            <p>{{ book.author_note }}</p>
+            <p style="font-size: 0.85rem; color: rgba(248,244,234,0.5);">{{ book.details }}</p>
+
+            <div class="book-links">
+                {% for link in book.links %}
+                <a class="primary-btn" target="_blank" rel="noopener" href="{{ link.url }}">{{ link.label }}</a>
+                {% endfor %}
+            </div>
+        </div>
+
+        <p class="marginal-note reveal">— some of these poems first found their way onto Substack, before they found their way onto a page like this one —</p>
+    </div>
+</div>
