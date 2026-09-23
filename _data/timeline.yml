@@ -43,3 +43,5 @@
 - year: "2026"
   title: "LogML, Imperial College London"
   icon: "bigben"
+  text: >-
+    Working on text-guided material generation, among other things.

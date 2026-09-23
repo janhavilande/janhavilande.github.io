@@ -257,12 +257,12 @@ a:hover {
 /* ---------------- A small flying butterfly ---------------- */
 
 .butterfly {
-    position: absolute;
+    position: fixed;
     width: 34px;
     height: 26px;
     pointer-events: none;
-    z-index: 3;
-    animation: butterfly-fly 19s ease-in-out infinite;
+    z-index: 5;
+    animation: butterfly-fly 32s ease-in-out infinite;
     filter: drop-shadow(0 2px 3px rgba(22, 33, 61, 0.15));
 }
 
@@ -325,19 +325,33 @@ a:hover {
 }
 
 @keyframes butterfly-fly {
-    0%   { top: 6%;  left: 0%;  transform: rotate(0deg); }
-    14%  { top: 22%; left: 28%; transform: rotate(8deg); }
-    28%  { top: 3%;  left: 52%; transform: rotate(-6deg); }
-    42%  { top: 26%; left: 74%; transform: rotate(7deg); }
-    58%  { top: 10%; left: 92%; transform: rotate(-4deg); }
-    72%  { top: 30%; left: 66%; transform: rotate(6deg); }
-    86%  { top: 14%; left: 22%; transform: rotate(-5deg); }
-    100% { top: 6%;  left: 0%;  transform: rotate(0deg); }
+    0%   { top: 10%; left: 4%;  transform: rotate(0deg); }
+    12%  { top: 28%; left: 22%; transform: rotate(10deg); }
+    24%  { top: 14%; left: 44%; transform: rotate(-8deg); }
+    36%  { top: 46%; left: 60%; transform: rotate(9deg); }
+    48%  { top: 62%; left: 38%; transform: rotate(-10deg); }
+    60%  { top: 78%; left: 70%; transform: rotate(8deg); }
+    72%  { top: 54%; left: 86%; transform: rotate(-6deg); }
+    86%  { top: 20%; left: 66%; transform: rotate(5deg); }
+    100% { top: 10%; left: 4%;  transform: rotate(0deg); }
 }
 
-@media (max-width: 991.98px) {
+@media (max-width: 767.98px) {
     .butterfly {
         display: none;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .butterfly {
+        animation: none;
+        top: 8%;
+        left: 4%;
+    }
+
+    .wing-left,
+    .wing-right {
+        animation: none;
     }
 }
 
@@ -557,6 +571,33 @@ a:hover {
 .book:focus-visible .book-note {
     opacity: 1;
     transform: translateX(-50%) translateY(0);
+}
+
+.dust-mote {
+    position: absolute;
+    bottom: 0.65rem;
+    left: 50%;
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: var(--ivory-2);
+    opacity: 0.85;
+    pointer-events: none;
+    transform: translate(-50%, 0) scale(1);
+    animation: dust-puff 750ms ease-out forwards;
+}
+
+@keyframes dust-puff {
+    to {
+        transform: translate(calc(-50% + var(--dx, 0px)), var(--dy, -20px)) scale(0.3);
+        opacity: 0;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .dust-mote {
+        display: none;
+    }
 }
 
 /* ================================================================

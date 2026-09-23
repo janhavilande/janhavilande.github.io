@@ -149,3 +149,52 @@ $(function () {
         });
     });
 })();
+
+/* ===================================================================
+   Bookshelf: a little dust puffs off a book when you touch it
+   =================================================================== */
+(function () {
+    try {
+        if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            return;
+        }
+        var books = document.querySelectorAll('.book');
+        if (!books.length) return;
+
+        function spawnDust(book) {
+            var count = 5;
+            for (var i = 0; i < count; i++) {
+                var mote = document.createElement('span');
+                mote.className = 'dust-mote';
+                mote.setAttribute('aria-hidden', 'true');
+                var dx = (Math.random() * 46 - 23).toFixed(1) + 'px';
+                var dy = (-(16 + Math.random() * 20)).toFixed(1) + 'px';
+                mote.style.setProperty('--dx', dx);
+                mote.style.setProperty('--dy', dy);
+                mote.style.left = (42 + Math.random() * 16) + '%';
+                mote.style.animationDelay = Math.round(Math.random() * 90) + 'ms';
+                book.appendChild(mote);
+                (function (m) {
+                    setTimeout(function () {
+                        if (m.parentNode) m.parentNode.removeChild(m);
+                    }, 900);
+                })(mote);
+            }
+        }
+
+        books.forEach(function (book) {
+            var lastTrigger = 0;
+            function trigger() {
+                var now = Date.now();
+                if (now - lastTrigger < 500) return;
+                lastTrigger = now;
+                spawnDust(book);
+            }
+            book.addEventListener('mouseenter', trigger);
+            book.addEventListener('touchstart', trigger, { passive: true });
+            book.addEventListener('focus', trigger);
+        });
+    } catch (e) {
+        // If anything goes wrong, the bookshelf just stays a plain bookshelf.
+    }
+})();
