@@ -258,12 +258,12 @@ a:hover {
 
 .butterfly {
     position: absolute;
-    width: 28px;
-    height: 21px;
-    color: var(--gold);
+    width: 34px;
+    height: 26px;
     pointer-events: none;
     z-index: 3;
-    animation: butterfly-fly 17s ease-in-out infinite;
+    animation: butterfly-fly 19s ease-in-out infinite;
+    filter: drop-shadow(0 2px 3px rgba(22, 33, 61, 0.15));
 }
 
 .butterfly-svg {
@@ -272,29 +272,56 @@ a:hover {
     overflow: visible;
 }
 
+.butterfly-antenna {
+    fill: none;
+    stroke: var(--navy);
+    stroke-width: 0.6;
+    stroke-linecap: round;
+    opacity: 0.6;
+}
+
+.butterfly-body {
+    fill: var(--navy);
+    opacity: 0.75;
+}
+
 .wing {
     transform-box: fill-box;
-    transform-origin: center;
-    fill: currentColor;
-    opacity: 0.92;
 }
 
 .wing-left {
-    animation: flap-left 0.45s ease-in-out infinite alternate;
+    transform-origin: 100% 50%;
+    animation: flap-left 0.5s ease-in-out infinite alternate;
 }
 
 .wing-right {
-    animation: flap-right 0.45s ease-in-out infinite alternate;
+    transform-origin: 0% 50%;
+    animation: flap-right 0.5s ease-in-out infinite alternate;
+}
+
+.wing-fore {
+    fill: var(--gold-bright);
+    opacity: 0.95;
+}
+
+.wing-hind {
+    fill: var(--gold);
+    opacity: 0.8;
+}
+
+.wing-spot {
+    fill: var(--ivory);
+    opacity: 0.65;
 }
 
 @keyframes flap-left {
     from { transform: scaleX(1); }
-    to { transform: scaleX(0.5); }
+    to { transform: scaleX(0.55); }
 }
 
 @keyframes flap-right {
     from { transform: scaleX(1); }
-    to { transform: scaleX(0.5); }
+    to { transform: scaleX(0.55); }
 }
 
 @keyframes butterfly-fly {
