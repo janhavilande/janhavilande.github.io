@@ -162,22 +162,30 @@ $(function () {
         if (!books.length) return;
 
         function spawnDust(book) {
-            var count = 5;
+            var flash = document.createElement('span');
+            flash.className = 'dust-puff-flash';
+            flash.setAttribute('aria-hidden', 'true');
+            book.appendChild(flash);
+            setTimeout(function () {
+                if (flash.parentNode) flash.parentNode.removeChild(flash);
+            }, 500);
+
+            var count = 8;
             for (var i = 0; i < count; i++) {
                 var mote = document.createElement('span');
                 mote.className = 'dust-mote';
                 mote.setAttribute('aria-hidden', 'true');
-                var dx = (Math.random() * 46 - 23).toFixed(1) + 'px';
-                var dy = (-(16 + Math.random() * 20)).toFixed(1) + 'px';
+                var dx = (Math.random() * 64 - 32).toFixed(1) + 'px';
+                var dy = (-(30 + Math.random() * 26)).toFixed(1) + 'px';
                 mote.style.setProperty('--dx', dx);
                 mote.style.setProperty('--dy', dy);
-                mote.style.left = (42 + Math.random() * 16) + '%';
+                mote.style.left = (38 + Math.random() * 24) + '%';
                 mote.style.animationDelay = Math.round(Math.random() * 90) + 'ms';
                 book.appendChild(mote);
                 (function (m) {
                     setTimeout(function () {
                         if (m.parentNode) m.parentNode.removeChild(m);
-                    }, 900);
+                    }, 1200);
                 })(mote);
             }
         }
@@ -196,5 +204,108 @@ $(function () {
         });
     } catch (e) {
         // If anything goes wrong, the bookshelf just stays a plain bookshelf.
+    }
+})();
+
+/* ===================================================================
+   Journey icons & research note numbers: a small gold sparkle on touch
+   =================================================================== */
+(function () {
+    try {
+        if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            return;
+        }
+        var targets = document.querySelectorAll('.timeline-icon, .entry-num');
+        if (!targets.length) return;
+
+        function spawnSparkle(el) {
+            var count = 5;
+            for (var i = 0; i < count; i++) {
+                var s = document.createElement('span');
+                s.className = 'sparkle-mote';
+                s.setAttribute('aria-hidden', 'true');
+                var angle = Math.random() * Math.PI * 2;
+                var dist = 14 + Math.random() * 14;
+                var dx = (Math.cos(angle) * dist).toFixed(1) + 'px';
+                var dy = (Math.sin(angle) * dist).toFixed(1) + 'px';
+                s.style.setProperty('--dx', dx);
+                s.style.setProperty('--dy', dy);
+                s.style.animationDelay = Math.round(Math.random() * 70) + 'ms';
+                el.appendChild(s);
+                (function (m) {
+                    setTimeout(function () {
+                        if (m.parentNode) m.parentNode.removeChild(m);
+                    }, 850);
+                })(s);
+            }
+        }
+
+        targets.forEach(function (el) {
+            var lastTrigger = 0;
+            function trigger() {
+                var now = Date.now();
+                if (now - lastTrigger < 500) return;
+                lastTrigger = now;
+                spawnSparkle(el);
+            }
+            el.addEventListener('mouseenter', trigger);
+            el.addEventListener('touchstart', trigger, { passive: true });
+        });
+    } catch (e) {
+        // If anything goes wrong, these just stay quiet, undecorated icons.
+    }
+})();
+
+/* ===================================================================
+   Writing page: a small ivy leaf drifts down when you touch the plate
+   =================================================================== */
+(function () {
+    try {
+        if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            return;
+        }
+        var plate = document.querySelector('.book-plate');
+        if (!plate) return;
+
+        var leafSvg = '<svg viewBox="0 0 16 16" aria-hidden="true">' +
+            '<path d="M8 1 C3.5 1 1.2 5 1.2 9 C1.2 13 4.3 15 8 15 C11.7 15 14.8 13 14.8 9 C14.8 5 12.5 1 8 1 Z" fill="#9cb589" />' +
+            '<path d="M8 2 L8 14" stroke="#5f7a52" stroke-width="0.7" stroke-linecap="round" />' +
+            '</svg>';
+
+        function spawnLeaf() {
+            var count = 2;
+            for (var i = 0; i < count; i++) {
+                var leaf = document.createElement('span');
+                leaf.className = 'ivy-leaf';
+                leaf.setAttribute('aria-hidden', 'true');
+                leaf.innerHTML = leafSvg;
+                var dx = (Math.random() * 70 - 35).toFixed(1) + 'px';
+                var dy = (140 + Math.random() * 60).toFixed(1) + 'px';
+                var rot = (120 + Math.random() * 160).toFixed(0) + 'deg';
+                leaf.style.setProperty('--dx', dx);
+                leaf.style.setProperty('--dy', dy);
+                leaf.style.setProperty('--rot', rot);
+                leaf.style.left = (30 + Math.random() * 40) + '%';
+                leaf.style.animationDelay = (i * 180) + 'ms';
+                plate.appendChild(leaf);
+                (function (m) {
+                    setTimeout(function () {
+                        if (m.parentNode) m.parentNode.removeChild(m);
+                    }, 2200);
+                })(leaf);
+            }
+        }
+
+        var lastTrigger = 0;
+        function trigger() {
+            var now = Date.now();
+            if (now - lastTrigger < 900) return;
+            lastTrigger = now;
+            spawnLeaf();
+        }
+        plate.addEventListener('mouseenter', trigger);
+        plate.addEventListener('touchstart', trigger, { passive: true });
+    } catch (e) {
+        // If anything goes wrong, the book plate just stays put.
     }
 })();
